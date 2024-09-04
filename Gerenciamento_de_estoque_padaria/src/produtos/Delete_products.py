@@ -1,6 +1,6 @@
-from tkinter import *
+import customtkinter as ctk
 
-main_window = Tk()
+main_window = ctk.CTk()
 main_window.title("Remover Produto")
 
 main_window.mainloop()
