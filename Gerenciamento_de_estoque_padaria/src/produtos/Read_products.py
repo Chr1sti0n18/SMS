@@ -13,13 +13,17 @@ class Read:
         self.main_window.state("zoomed")  
         
         # Carregando a logo
-        logo = ctk.CTkImage(light_image=Image.open("/assets/logo.png"), dark_image=Image.open("/assets/logo.png"))    
+        logo = ctk.CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), 
+                            dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), size=(75, 75))    
+        
         
         self.frame1 = ctk.CTkFrame(self.main_window)
         self.frame1.pack(side="top", fill="y", expand = False, ipadx = 1280)
         
-        self.head = ctk.CTkLabel(self.frame1, text="Produtos", font=("MONTSERRAT", 22, "bold"), fg_color="#756645", text_color="#F4EE82",height=48)
+        self.head = ctk.CTkLabel(self.frame1, text="Produtos", font=("MONTSERRAT", 22, "bold", anchor="center"), 
+                                 fg_color="#FFC07E", text_color="#554131",height=80, image=logo, compound="left", padx = 350)
         self.head.pack(fill="both") 
+        
         # Criando a tabela
         self.table_frame=ctk.CTkFrame(self.main_window, bg_color="white")
         self.table_frame.pack(anchor="center", pady=25)
