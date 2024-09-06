@@ -19,13 +19,16 @@ class Read:
         # Criando frame principal
         self.frame1 = ctk.CTkFrame(self.main_window)
         self.frame1.pack(side="top", fill="y", expand = False, ipadx = 1280)
+        
+        # Criando inner frame 
         self.inner_frame1 = ctk.CTkFrame(self.frame1)
         self.inner_frame1.pack(fill="both") 
         
-         # Texto da frame principal
+         # Texto do inner frame
         self.head = ctk.CTkLabel(self.inner_frame1, text="Produtos", font=("MONTSERRAT", 22, "bold"), 
                                  fg_color="#FFC07E", text_color="#554131",height=90, width=1280, anchor="center")
         
+        # Posicionando logo no inner frame
         self.image_label = ctk.CTkLabel(self.inner_frame1, image=logo, text="")
         self.image_label.pack(side="left", anchor="w")  # Sem padding, a imagem fica na extrema esquerda
         
@@ -37,6 +40,7 @@ class Read:
         self.table_style=ttk.Style()
         self.table=ttk.Treeview(self.table_frame, columns=(1, 2, 3, 4, 5))
         
+        # Criando as colunas da tabela
         self.table.heading("1", text="ID")
         self.table.column("1", width=60, stretch="no", anchor="center")
         self.table.heading("2", text="PRODUTO")
@@ -49,6 +53,7 @@ class Read:
         self.table.column("5", minwidth=90, stretch="no", anchor="center")
         self.table["show"] = "headings"
         self.table.pack(fill="both")
+        
         #inserindo dados para teste na tabela
         self.table.insert(parent='', index=0, values=(1, "PÃO", 15, 20, "10-4-2025"))
         
