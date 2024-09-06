@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import customtkinter as ctk
+from PIL import Image
 
 class Read:
     def __init__(self):
@@ -10,6 +11,9 @@ class Read:
         self.main_window.geometry("1280x720+0+0")
         self.main_window.configure(fg_color="#EBEBEB")
         self.main_window.state("zoomed")  
+        
+        # Carregando a logo
+        logo = ctk.CTkImage(light_image=Image.open("/assets/logo.png"), dark_image=Image.open("/assets/logo.png"))    
         
         self.frame1 = ctk.CTkFrame(self.main_window)
         self.frame1.pack(side="top", fill="y", expand = False, ipadx = 1280)
