@@ -7,11 +7,13 @@ class Read:
     def __init__(self):
         # Criando a estrutura da janela
         self.main_window = ctk.CTk()
+        screen_width = self.main_window.winfo_screenwidth()
+        screen_height = self.main_window.winfo_screenheight()
         self.main_window.title("Produtos")
-        self.main_window.geometry("1280x720+0+0")
+        self.main_window.geometry(f"{screen_width}x{screen_height}+0+0")
         self.main_window.configure(fg_color="#EBEBEB")
-        self.main_window.state("zoomed")  
-        
+        self.main_window.resizable(False, False)
+
         # Carregando a logo
         logo = ctk.CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), 
                             dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), size=(90, 90))    
@@ -26,7 +28,7 @@ class Read:
         
          # Texto do inner frame
         self.head = ctk.CTkLabel(self.inner_frame1, text="Produtos", font=("MONTSERRAT", 22, "bold"), 
-                                 fg_color="#FFC07E", text_color="#554131",height=90, width=1280, anchor="center")
+                                 fg_color="#FFC07E", text_color="#554131",height=90, width=screen_width, anchor="center")
         
         # Posicionando logo no inner frame
         self.image_label = ctk.CTkLabel(self.inner_frame1, image=logo, text="")
@@ -60,5 +62,4 @@ class Read:
         self.main_window.mainloop()
         
 app=Read()
-
         
