@@ -26,13 +26,11 @@ class Read:
         
          # Texto da frame principal
         self.head = ctk.CTkLabel(self.inner_frame1, text="Produtos", font=("MONTSERRAT", 22, "bold"), 
-                                 fg_color="#FFC07E", text_color="#554131",height=90, width=1280, anchor="center")
+                                 fg_color="#FFC07E", text_color="#554131",height=90, width=screen_width, anchor="center")
         
         self.image_label = ctk.CTkLabel(self.inner_frame1, image=logo, text="")
         self.image_label.pack(side="left", anchor="w")  # Sem padding, a imagem fica na extrema esquerda
         
-        self.head = ctk.CTkLabel(self.frame1, text="Produtos", font=("MONTSERRAT", 22, "bold"), 
-                                 fg_color="#FFC07E", text_color="#554131",height=80, image=logo, compound="left", padx = 50)
         self.head.pack(fill="both") 
         
         # Criando a tabela
