@@ -7,11 +7,13 @@ class Read:
     def __init__(self):
         # Criando a estrutura da janela
         self.main_window = ctk.CTk()
+        screen_width = self.main_window.winfo_screenwidth()
+        screen_height = self.main_window.winfo_screenheight()
         self.main_window.title("Produtos")
-        self.main_window.geometry("1280x720+0+0")
+        self.main_window.geometry(f"{screen_width}x{screen_height}+0+0")
         self.main_window.configure(fg_color="#EBEBEB")
-        self.main_window.state("zoomed")  
-        
+        self.main_window.resizable(False, False)
+
         # Carregando a logo
         logo = ctk.CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), 
                             dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), size=(75, 75))    
@@ -20,8 +22,8 @@ class Read:
         self.frame1 = ctk.CTkFrame(self.main_window)
         self.frame1.pack(side="top", fill="y", expand = False, ipadx = 1280)
         
-        self.head = ctk.CTkLabel(self.frame1, text="Produtos", font=("MONTSERRAT", 22, "bold", anchor="center"), 
-                                 fg_color="#FFC07E", text_color="#554131",height=80, image=logo, compound="left", padx = 350)
+        self.head = ctk.CTkLabel(self.frame1, text="Produtos", font=("MONTSERRAT", 22, "bold"), 
+                                 fg_color="#FFC07E", text_color="#554131",height=80, image=logo, compound="left", padx = 50)
         self.head.pack(fill="both") 
         
         # Criando a tabela
@@ -48,5 +50,4 @@ class Read:
         self.main_window.mainloop()
         
 app=Read()
-
         
