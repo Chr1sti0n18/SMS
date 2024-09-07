@@ -19,7 +19,7 @@ def LoginForm():
                         dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), size=(90, 90))
     
     # Montando a estrutura da Tela
-    title_label = CTkLabel(main_window,text="Ki Pães",fg_color="#FFC07E",text_color="#554131",
+    title_label = CTkLabel(main_window,text="Qui Pães",fg_color="#FFC07E",text_color="#554131",
                         font=CTkFont(family="Segoe Script", size=52, weight="bold"),height=100, image=logo, compound="left", width=640)
     title_label.pack()
     user_entry = CTkEntry(main_window,bg_color="white",font=("Segoe UI Light", 22),placeholder_text="Seu usuário")
@@ -27,7 +27,7 @@ def LoginForm():
     password_entry = CTkEntry(main_window,bg_color="white",font=("Segoe UI Light", 22),show="*",placeholder_text="Sua senha")
     password_entry.pack(padx=10)
 
-    btn_submit = CTkButton(main_window,text="Login",font=("Montserrat", 22, "bold"))
+    btn_submit = CTkButton(main_window,text="Login",font=("Segoe UI", 22, "bold"))
     btn_submit.pack(padx=10,pady=60)
 
     main_window.mainloop()
