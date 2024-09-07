@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import customtkinter as ctk
+from customtkinter import *
 from PIL import Image
 
 class Read:
@@ -15,8 +16,8 @@ class Read:
         self.main_window.resizable(False, False)
 
         # Carregando a logo
-        logo = ctk.CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), 
-                            dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), size=(90, 90))    
+        logo = ctk.CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logotipo.png"), 
+                            dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logotipo.png"), size=(120, 120))    
         
         # Criando frame principal
         self.frame1 = ctk.CTkFrame(self.main_window)
@@ -24,16 +25,17 @@ class Read:
         
         # Criando inner frame 
         self.inner_frame1 = ctk.CTkFrame(self.frame1)
-        self.inner_frame1.pack(fill="both") 
         
          # Texto do inner frame
-        self.head = ctk.CTkLabel(self.inner_frame1, text="Produtos", font=("MONTSERRAT", 22, "bold"), 
-                                 fg_color="#FFC07E", text_color="#554131",height=90, width=screen_width, anchor="center")
-        
+        self.head = ctk.CTkLabel(self.inner_frame1, text="Produtos", font=CTkFont(family="Segoe Script", size=52, weight="bold"), 
+                                 fg_color="#FFC07E", text_color="#554131",height=120, width=screen_width, anchor="center")
         # Posicionando logo no inner frame
         self.image_label = ctk.CTkLabel(self.inner_frame1, image=logo, text="")
         self.image_label.pack(side="left", anchor="w")  # Sem padding, a imagem fica na extrema esquerda
         
+        
+        
+        self.inner_frame1.pack(fill="both") 
         self.head.pack(fill="both") 
         
         # Criando a tabela
