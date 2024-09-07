@@ -1,4 +1,6 @@
 from customtkinter import *
+from customtkinter import CTkImage
+from PIL import Image
 
 def Login():
     # criar a lógica de Login
@@ -12,10 +14,13 @@ def LoginForm():
     main_window.geometry("640x480+620+275")
     main_window._set_appearance_mode("system")
     main_window.resizable(False,False)   
-
+    
+    logo = CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), 
+                        dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), size=(90, 90))
+    
     # Montando a estrutura da Tela
-    title_label = CTkLabel(main_window,text="Ki Pães",bg_color="#756645",text_color="#F4EE82",
-                        font=("Montserrat", 52, "bold"),padx=400,height=100)
+    title_label = CTkLabel(main_window,text="Ki Pães",fg_color="#FFC07E",text_color="#554131",
+                        font=CTkFont(family="montserrat", size=52, weight="bold"),height=100, image=logo, compound="left", width=640)
     title_label.pack()
     user_entry = CTkEntry(main_window,bg_color="white",font=("Montserrat", 22),placeholder_text="Seu usuário")
     user_entry.pack(padx=10,pady=60)
