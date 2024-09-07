@@ -20,11 +20,11 @@ def LoginForm():
     
     # Montando a estrutura da Tela
     title_label = CTkLabel(main_window,text="Ki Pães",fg_color="#FFC07E",text_color="#554131",
-                        font=CTkFont(family="montserrat", size=52, weight="bold"),height=100, image=logo, compound="left", width=640)
+                        font=CTkFont(family="Segoe Script", size=52, weight="bold"),height=100, image=logo, compound="left", width=640)
     title_label.pack()
-    user_entry = CTkEntry(main_window,bg_color="white",font=("Montserrat", 22),placeholder_text="Seu usuário")
+    user_entry = CTkEntry(main_window,bg_color="white",font=("Segoe UI Light", 22),placeholder_text="Seu usuário")
     user_entry.pack(padx=10,pady=60)
-    password_entry = CTkEntry(main_window,bg_color="white",font=("Montserrat", 22),show="*",placeholder_text="Sua senha")
+    password_entry = CTkEntry(main_window,bg_color="white",font=("Segoe UI Light", 22),show="*",placeholder_text="Sua senha")
     password_entry.pack(padx=10)
 
     btn_submit = CTkButton(main_window,text="Login",font=("Montserrat", 22, "bold"))
