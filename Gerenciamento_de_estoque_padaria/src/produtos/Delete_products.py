@@ -1,9 +1,10 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import messagebox  # Importação explícita do messagebox
 import customtkinter as ctk
-class DeletarProduto:
+
+class Delete:
     def __init__(self):
-        # janela principal
+        # Janela principal
         self.janela_principal = ctk.CTk()
         self.janela_principal.title("Deletar Produto")
         self.janela_principal.geometry("1280x720+0+0") 
@@ -15,21 +16,21 @@ class DeletarProduto:
 
         # Cabeçalho
         self.cabecalho = ctk.CTkLabel(self.frame1, text="Deletar Produto", font=("MONTSERRAT", 22, "bold"),
-                                  fg_color="#FFC07E", text_color="#554131", height=80, compound="left", padx=1280)
+                                      fg_color="#FFC07E", text_color="#554131", height=80, compound="left", padx=1280)
         self.cabecalho.pack(fill="x")
-
-        # confirmação a exclusão
+        
+        # Confirmação da exclusão
         self.botao_deletar = ctk.CTkButton(self.frame1, text="Deletar Produto", command=self.deletar_produto)
         self.botao_deletar.pack(pady=20)
 
         self.janela_principal.mainloop()
 
     def deletar_produto(self):
-        mensagem = tk.messagebox.askquestion("Confirmação", "Tem certeza que deseja deletar este produto?")
-        if mensagem == 'sim':
+        mensagem = messagebox.askquestion("Confirmação", "Tem certeza que deseja deletar este produto?")
+        if mensagem == 'yes':  # Corrigido para 'yes' em vez de 'sim' (para compatibilidade com tkinter)
             print("Produto deletado")  
-            tk.messagebox.showinfo("Sucesso", "Produto deletado com sucesso.")
+            messagebox.showinfo("Sucesso", "Produto deletado com sucesso.")
         else:
-            tk.messagebox.showinfo("Cancelado", "Exclusão do produto cancelada.")
+            messagebox.showinfo("Cancelado", "Exclusão do produto cancelada.")
 
-app = DeletarProduto()
+# app = Delete()

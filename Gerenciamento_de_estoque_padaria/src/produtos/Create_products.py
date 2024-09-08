@@ -1,6 +1,8 @@
 from tkinter import *
 import customtkinter as ctk
 from PIL import Image
+from Read_products import Read
+from Delete_products import Delete
 
 class Create:
 
@@ -22,7 +24,24 @@ class Create:
         self.frame1.pack(side="top", fill="y", expand = False, ipadx = 1280)
         self.inner_frame1 = ctk.CTkFrame(self.frame1, fg_color="#FFC07E")
         self.inner_frame1.pack(fill="both") 
-        self.option_menu = ctk.CTkOptionMenu(self.inner_frame1, values=["Home", "Produtos", "Criação de Produtos"], fg_color="#EBEBEB", dropdown_fg_color="#EBEBEB", button_color="#EBEBEB", text_color="#554131",button_hover_color="#EBEBEB", font=ctk.CTkFont(family="Segoe UI", weight="bold"))
+
+        def optionmenu_callback(choice):
+            if(choice == "Produtos"):
+                self.main_window.destroy()
+                Read()
+            elif choice == "Deletar":
+                self.main_window.destroy()
+                Delete()
+            else:
+                self.main_window.destroy()
+                Create()
+
+        self.option_menu = ctk.CTkOptionMenu(self.inner_frame1, 
+                                             values=["Cadastro", "Produtos", "Deletar"],
+                                                fg_color="#EBEBEB", dropdown_fg_color="#EBEBEB", 
+                                                    button_color="#EBEBEB", text_color="#554131", 
+                                                        button_hover_color="#EBEBEB", font=ctk.CTkFont(family="Segoe UI", weight="bold"), 
+                                                        command=optionmenu_callback)
         self.option_menu.pack(side="right", anchor="w", padx=10, expand=False)
 
          # Texto da frame principal
@@ -50,8 +69,8 @@ class Create:
         self.form_codigo = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Validade", height=40, width=200, corner_radius=15, border_color="#554131")
         self.form_codigo.grid(row=1, column=2, pady=50, padx=30)
 
-        self.submit_button = ctk.CTkButton(self.inner_frame_form)
-        self.submit_button.grid(row=2, column=1, columnspan=3, pady=20)
+        self.submit_button = ctk.CTkButton(self.inner_frame_form, text="Cadastrar", height=40, width=200, corner_radius=15)
+        self.submit_button.grid(row=2, column=1, rowspan=2, columnspan=3, pady=20)
         
 
         self.main_window.mainloop()

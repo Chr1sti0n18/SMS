@@ -1,6 +1,10 @@
 from customtkinter import *
 
-main_window = CTk()
-main_window.title("Atualização de Produto")
+class Update:
 
-main_window.mainloop()
+    def __init__(self):
+
+        self.main_window = CTk()
+        self.main_window.title("Atualização de Produto")
+
+        self.main_window.mainloop()
