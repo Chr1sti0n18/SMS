@@ -22,7 +22,9 @@ class Create:
         self.frame1.pack(side="top", fill="y", expand = False, ipadx = 1280)
         self.inner_frame1 = ctk.CTkFrame(self.frame1, fg_color="#FFC07E")
         self.inner_frame1.pack(fill="both") 
-        self.option_menu = ctk.CTkOptionMenu(self.inner_frame1, values=["Home", "Produtos", "Criação de Produtos"], fg_color="#EBEBEB", dropdown_fg_color="#EBEBEB", button_color="#EBEBEB", text_color="#554131",button_hover_color="#EBEBEB", font=ctk.CTkFont(family="Segoe UI", weight="bold"))
+        self.option_menu = ctk.CTkOptionMenu(self.inner_frame1, values=["Home", "Produtos", "Criação de Produtos"], fg_color="#EBEBEB", 
+                                                dropdown_fg_color="#EBEBEB", button_color="#EBEBEB", text_color="#554131", 
+                                                    button_hover_color="#EBEBEB", font=ctk.CTkFont(family="Segoe UI", weight="bold"))
         self.option_menu.pack(side="right", anchor="w", padx=10, expand=False)
 
          # Texto da frame principal
