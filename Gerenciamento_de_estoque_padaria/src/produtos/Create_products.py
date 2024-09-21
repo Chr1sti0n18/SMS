@@ -33,8 +33,9 @@ class Create:
                 self.main_window.destroy()
                 Delete()
             else:
-                self.main_window.destroy()
-                Create()
+                # self.main_window.destroy()
+                # Create()
+                pass
 
         self.option_menu = ctk.CTkOptionMenu(self.inner_frame1, 
                                              values=["Cadastro", "Produtos", "Deletar"],

@@ -33,4 +33,4 @@ class Delete:
         else:
             messagebox.showinfo("Cancelado", "Exclusão do produto cancelada.")
 
-# app = Delete()
+app = Delete()

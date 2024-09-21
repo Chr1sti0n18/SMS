@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./Gerenciamento_de_estoque_padaria/src/produtos",
+        "./Gerenciamento_de_estoque_padaria/src/CRUD"
+    ]
+}
