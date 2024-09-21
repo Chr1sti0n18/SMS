@@ -3,9 +3,11 @@ import customtkinter as ctk
 from customtkinter import *
 from tkinter import *
 from PIL import Image
+from dbProducts import Database 
 
 class Read:
     def __init__(self):
+        self.db = Database ("bd.db")
         # Criando a estrutura da janela
         self.main_window = Tk()
         screen_width = self.main_window.winfo_screenwidth()
@@ -101,5 +103,5 @@ class Read:
         
         self.main_window.mainloop()
         
-# app=Read()
+app=Read()
         
