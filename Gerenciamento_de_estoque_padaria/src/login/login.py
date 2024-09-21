@@ -1,9 +1,9 @@
 from customtkinter import *
 from customtkinter import CTkImage
 from PIL import Image
+from bd_login import Database
 
 def Login():
-    # criar a lógica de Login
     ""
 
 def LoginForm():
@@ -15,8 +15,8 @@ def LoginForm():
     main_window._set_appearance_mode("system")
     main_window.resizable(False,False)   
     
-    logo = CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), 
-                        dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), size=(90, 90))
+    logo = CTkImage(light_image=Image.open("src/assets/logo.png"), 
+                        dark_image=Image.open("src/assets/logo.png"), size=(90, 90))
     
     # Montando a estrutura da Tela
     title_label = CTkLabel(main_window,text="Qui Pães",fg_color="#FFC07E",text_color="#554131",
@@ -27,7 +27,7 @@ def LoginForm():
     password_entry = CTkEntry(main_window,bg_color="white",font=("Segoe UI Light", 22),show="*",placeholder_text="Sua senha")
     password_entry.pack(padx=10)
 
-    btn_submit = CTkButton(main_window,text="Login",font=("Segoe UI", 22, "bold"))
+    btn_submit = CTkButton(main_window,text="Login",font=("Segoe UI", 22, "bold"), command=Login)
     btn_submit.pack(padx=10,pady=60)
 
     main_window.mainloop()
