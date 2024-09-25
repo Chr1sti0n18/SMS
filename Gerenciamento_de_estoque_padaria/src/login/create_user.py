@@ -69,8 +69,6 @@ class Create_user:
 
         self.btnClear = ctk.CTkButton(self.frame2,  text="Limpar Campos", width=15, font=("CENTURY GOTHIC", 16, "bold"), text_color="white", fg_color="#f39c12", command = self.clearAll)
         self.btnClear.pack(padx=10)
-
-        
         
 
         self.frame3 = ctk.CTkFrame(self.main_window, fg_color="#ecf0f1", width=1980, height=520)
