@@ -1,21 +1,21 @@
 import sqlite3
 
-class Database :
+class Database:
     
     def __init__(self, bd_login):
         self.connect = sqlite3.connect(bd_login)
         self.cursor = self.connect.cursor()
         usuarios = """CREATE TABLE IF NOT EXISTS UsuariosPadaria(
-                        ID INTEGER AUTO_INCREMENT PRIMARY KEY,
-                        NomeUser TEXT NOT NULL,
-                        Senha TEXT NOT NULL,
+                        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                        NomeUser TEXT,
+                        Senha TEXT,
                         NivelAcess TEXT DEFAULT 'Funcionario'
                         );"""
         self.cursor.execute(usuarios)
         self.connect.commit()
 
     def insert(self, nome, senha, nivel_acesso):
-        self.cursor.execute("INSERT INTO UsuariosPadaria VALUES (NULL, ?, ?, ?)", (nome, senha, nivel_acesso))
+        self.cursor.execute("INSERT INTO UsuariosPadaria (NomeUser, Senha, NivelAcess) VALUES (?, ?, ?)", (nome, senha, nivel_acesso))
         self.connect.commit()
 
     def fetch(self):
@@ -24,11 +24,11 @@ class Database :
         return rows
 
     def remove(self, id):
-        self.cursor.execute("DELETE FROM UsuariosPadaria WHERE ID = ?", id)
+        self.cursor.execute("DELETE FROM UsuariosPadaria WHERE ID =?", (id,))
         self.connect.commit()
 
-    def update(self, id, nome, senha, nivel_acesso):
-        self.cursor.execute("UPDATE UsuariosPadaria SET NomeUser=?, Senha=?, NivelAcess=?", (id, nome, senha, nivel_acesso))
+    def update(self, nome, senha, nivel_acesso):
+        self.cursor.execute("UPDATE UsuariosPadaria SET NomeUser=?, Senha=?, NivelAcess=?", (nome, senha, nivel_acesso))
         self.connect.commit()
 
     def logar(self, nome, senha):
