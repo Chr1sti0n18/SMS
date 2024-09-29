@@ -101,5 +101,5 @@ class Read:
         
         self.main_window.mainloop()
         
-# app=Read()
+app=Read()
         
