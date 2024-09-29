@@ -7,7 +7,7 @@ from dbProducts import Database
 
 class Read:
     def __init__(self):
-        self.db = Database ("bd.db")
+        self.db = Database ("products.db")
         # Criando a estrutura da janela
         self.main_window = Tk()
         screen_width = self.main_window.winfo_screenwidth()
@@ -44,7 +44,7 @@ class Read:
         # Posicionando logo no head da aba
         self.image_label = ctk.CTkLabel(self.inner_frame1, image=logo, text='')
         self.image_label.pack(side="left", anchor="w")  # Sem padding, a imagem fica na extrema esquerda
-        self.inner_frame1.pack(fill="both") 
+        self.inner_frame1.pack(fill="both")
         self.head.pack(fill="both", anchor='center') 
         
         # Criando barra de busca
@@ -53,8 +53,10 @@ class Read:
         self.search_box=ctk.CTkEntry(self.inner_frame2, placeholder_text="Buscar", corner_radius=15, width=150, border_color="#554131", font=CTkFont(family="Segoe UI"))
         self.search_box.pack(side='left', padx=205)
         self.inner_frame2.pack(fill='both', ipadx=305, pady=10)
+        
         # Seletor de categoria
-        self.combobox = ctk.CTkComboBox(self.inner_frame2, values=["Todos", "Salgados", "Enlatados", "Doces"], corner_radius=15, width=150, font=CTkFont(family="Segoe UI"))
+        self.combobox = ctk.CTkComboBox(self.inner_frame2, values=["Todos", "Salgados", "Enlatados", "Doces"], 
+                                        corner_radius=15, width=150, font=CTkFont(family="Segoe UI"), command=self.teste)
         self.combobox.pack(side='right', padx=205)
         
         
@@ -83,10 +85,8 @@ class Read:
         self.table.column("6", minwidth=90, stretch="no", anchor="center")
         self.table["show"] = "headings"
         self.table.pack(fill="both")
-        
-        #inserindo dados para teste na tabela
-        self.table.insert(parent='', index=0, values=(8949461894984, "PÃO", 15, 20, "10-4-2025"))
-        
+        self.displayAll()
+    
         # Botões da aba
         self.frame2 = ctk.CTkFrame(self.main_window)
         self.frame2.configure(fg_color='transparent')
@@ -94,14 +94,34 @@ class Read:
         self.inner_frame3=ctk.CTkFrame(self.frame2)
         self.inner_frame3.configure(fg_color='transparent')
         self.inner_frame3.pack(side='left', fill='both')
-        self.back_button = ctk.CTkButton(self.inner_frame3, width=150, text="Atualizar", fg_color='#554131',
-                                         font=ctk.CTkFont(family="Segoe UI", weight="bold"), text_color='#EBEBEB')
-        self.back_button.pack(side='right', padx=205)
+        self.refresh_button = ctk.CTkButton(self.inner_frame3, width=150, text="Atualizar", command = self.displayAll ,fg_color='#554131',
+                                            font=ctk.CTkFont(family="Segoe UI", weight="bold"), text_color='#EBEBEB')
+        self.refresh_button.pack(side='right', padx=205)
+    
+        self.main_window.mainloop()
+        
+    # Dados da tabela
+    def teste (self, choice):
+        self.table.delete(*self.table.get_children())
+        for row in self.db.fetch(choice):
+            self.table.insert("", END, values = row)
+        
+    def displayAll(self):
+        filter = self.combobox.get()
+        self.table.delete(*self.table.get_children())
+        for row in self.db.fetch(filter):
+            self.table.insert("", END, values = row)
+
+        
+            
+    # Função de filtro
+    #def filter_box(self):
+        
+        
+
     
         
         
-        
-        self.main_window.mainloop()
         
 app=Read()
         

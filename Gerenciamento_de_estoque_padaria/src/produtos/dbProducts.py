@@ -20,14 +20,18 @@ class Database:
         self.con.commit()
 
     # Inserindo um produto
-    def insert(self, Produto, Quantidade, Preco, Validade, Categoria):
+    def insert(self, ID, Produto, Quantidade, Preco, Validade, Categoria):
         self.cur.execute("INSERT INTO ProdutosPadaria (Produto, Quantidade, Preco, Validade, Categoria) VALUES (?, ?, ?, ?, ?)",
                          (Produto, Quantidade, Preco, Validade, Categoria))
         self.con.commit()
 
     # Obtendo todos os produtos
-    def fetch(self):
-        self.cur.execute("SELECT * FROM ProdutosPadaria")
+    def fetch(self, filter):
+        if filter == "Todos":     
+            self.cur.execute("SELECT * FROM ProdutosPadaria")
+            rows = self.cur.fetchall()
+            return rows
+        self.cur.execute("SELECT * FROM ProdutosPadaria WHERE Categoria = ?", (filter,))
         rows = self.cur.fetchall()
         return rows
 
