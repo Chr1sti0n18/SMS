@@ -7,6 +7,7 @@ from dbProducts import Database
 
 class Read:
     def __init__(self):
+        
         self.db = Database ("products.db")
         # Criando a estrutura da janela
         self.main_window = Tk()
@@ -50,9 +51,12 @@ class Read:
         # Criando barra de busca
         self.inner_frame2 = ctk.CTkFrame(self.frame1)
         self.inner_frame2.configure(height=600, fg_color='transparent')
-        self.search_box=ctk.CTkEntry(self.inner_frame2, placeholder_text="Buscar", corner_radius=15, width=150, border_color="#554131", font=CTkFont(family="Segoe UI"))
+        self.search_box=ctk.CTkEntry(self.inner_frame2, placeholder_text="Pesquisar", corner_radius=15, width=150, border_color="#554131", font=CTkFont(family="Segoe UI"))
         self.search_box.pack(side='left', padx=205)
         self.inner_frame2.pack(fill='both', ipadx=305, pady=10)
+        self.search_button=ctk.CTkButton(self.inner_frame2, width = 75, text = 'Buscar', fg_color='#554131',
+                                            font=ctk.CTkFont(family="Segoe UI", weight="bold"), text_color='#EBEBEB', command=self.searchProduct)
+        self.search_button.place(relx=1, x=-1150, y=2, anchor = NE)
         
         # Seletor de categoria
         self.combobox = ctk.CTkComboBox(self.inner_frame2, values=["Todos", "Salgados", "Enlatados", "Doces"], 
@@ -112,16 +116,16 @@ class Read:
         for row in self.db.fetch(filter):
             self.table.insert("", END, values = row)
 
-        
+    def searchProduct(self):
+        search = self.search_box.get().upper()
+        self.table.delete(*self.table.get_children())
+        if search == '':
+            for row in self.db.fetch('Todos'):
+                self.table.insert("", END, values = row)
+        for row in self.db.search(search):
+            self.table.insert("", END, values = row)
             
-    # Função de filtro
-    #def filter_box(self):
-        
-        
-
-    
-        
-        
+                  
         
 app=Read()
         
