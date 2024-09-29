@@ -2,7 +2,7 @@ from tkinter import *
 import customtkinter as ctk
 from PIL import Image
 from Read_products import Read
-from Delete_products import Delete
+from Delete_products import DeletarProduto
 
 class Create:
 
@@ -31,7 +31,7 @@ class Create:
                 Read()
             elif choice == "Deletar":
                 self.main_window.destroy()
-                Delete()
+                DeletarProduto()
             else:
                 # self.main_window.destroy()
                 # Create()
@@ -61,14 +61,14 @@ class Create:
         self.inner_frame_form.pack(ipadx=200, ipady=250, expand=True)
         self.form_codigo = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Id do produto", height=40, width=200, corner_radius=15, border_color="#554131")
         self.form_codigo.grid(row=0, column=1 , pady=50, padx=30)
-        self.form_codigo = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Nome", height=40, width=200, corner_radius=15, border_color="#554131")
-        self.form_codigo.grid(row=0, column=2, pady=50, padx=30)
-        self.form_codigo = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Preço", height=40, width=200, corner_radius=15, border_color="#554131")
-        self.form_codigo.grid(row=0, column=3, pady=50, padx=30)
-        self.form_codigo = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Quantidade", height=40, width=200, corner_radius=15, border_color="#554131")
-        self.form_codigo.grid(row=1, column=1, pady=50, padx=30)
-        self.form_codigo = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Validade", height=40, width=200, corner_radius=15, border_color="#554131")
-        self.form_codigo.grid(row=1, column=2, pady=50, padx=30)
+        self.form_name = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Nome", height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_name.grid(row=0, column=2, pady=50, padx=30)
+        self.form_price = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Preço", height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_price.grid(row=0, column=3, pady=50, padx=30)
+        self.form_qtd = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Quantidade", height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_qtd.grid(row=1, column=1, pady=50, padx=30)
+        self.form_val = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Validade", height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_val.grid(row=1, column=2, pady=50, padx=30)
 
         self.submit_button = ctk.CTkButton(self.inner_frame_form, text="Cadastrar", height=40, width=200, corner_radius=15)
         self.submit_button.grid(row=2, column=1, rowspan=2, columnspan=3, pady=20)
