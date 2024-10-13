@@ -1,8 +1,8 @@
 from tkinter import *
 import customtkinter as ctk
 from PIL import Image
-#from Read_products import Read
-#from Delete_products import DeletarProduto
+from Read_products import Read
+from Delete_products import DeletarProduto
 
 class Create:
 
