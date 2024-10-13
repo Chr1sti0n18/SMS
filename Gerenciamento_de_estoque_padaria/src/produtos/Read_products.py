@@ -1,4 +1,4 @@
-from tkinter import ttk
+from tkinter import messagebox, ttk
 import customtkinter as ctk
 from customtkinter import *
 from tkinter import *
@@ -101,6 +101,10 @@ class Read:
         self.refresh_button = ctk.CTkButton(self.inner_frame3, width=150, text="Atualizar", command = self.displayAll ,fg_color='#554131',
                                             font=ctk.CTkFont(family="Segoe UI", weight="bold"), text_color='#EBEBEB')
         self.refresh_button.pack(side='right', padx=205)
+        self.botao_deletar = ctk.CTkButton(self.inner_frame3, text="Deletar", 
+                                           command=self.deletar_produto, fg_color="#554131", 
+                                           text_color="#EBEBEB", width=150, font=ctk.CTkFont(family="Segoe UI", weight="bold"))
+        self.botao_deletar.pack(side='right', padx=55)
     
         self.main_window.mainloop()
         
@@ -124,6 +128,27 @@ class Read:
                 self.table.insert("", END, values = row)
         for row in self.db.search(search):
             self.table.insert("", END, values = row)
+
+    def deletar_produto(self):
+        # Obtém o item selecionado
+        selected_item = self.table.selection()
+
+        if not selected_item:
+            messagebox.showwarning("Aviso", "Nenhum produto selecionado!")
+            return
+
+        # Pega os valores do item selecionado
+        produto_selecionado = self.table.item(selected_item, "values")
+
+        # Confirmação
+        confirmacao = messagebox.askquestion("Confirmação", f"Tem certeza que deseja deletar o produto {produto_selecionado[1]}?")
+        
+        if confirmacao == 'yes':
+            # Deleta o produto da tabela
+            self.table.delete(selected_item)
+            messagebox.showinfo("Sucesso", f"Produto '{produto_selecionado[1]}' deletado com sucesso.")
+        else:
+            messagebox.showinfo("Cancelado", "Exclusão do produto cancelada.")
             
                   
         
