@@ -11,8 +11,6 @@ class Read:
         self.db = Database ("products.db")
         # Criando a estrutura da janela
         self.main_window = Tk()
-        screen_width = self.main_window.winfo_screenwidth()
-        screen_height = self.main_window.winfo_screenheight()
         self.main_window.title("Produtos")
         self.main_window.state('zoomed')
         self.main_window.iconbitmap('Gerenciamento_de_estoque_padaria/src/assets/logo_sem_fundo.ico')
@@ -40,7 +38,7 @@ class Read:
         
          # Texto do head da aba
         self.head = ctk.CTkLabel(self.inner_frame1, text="Produtos", font=CTkFont(family="Segoe Script", size=52, weight="bold"), 
-                                 fg_color="#FFC07E", text_color="#554131",height=120, width=screen_width, anchor="center")
+                                 fg_color="#FFC07E", text_color="#554131",height=120, anchor="center")
         
         # Posicionando logo no head da aba
         self.image_label = ctk.CTkLabel(self.inner_frame1, image=logo, text='')
