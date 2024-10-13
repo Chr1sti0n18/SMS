@@ -14,13 +14,13 @@ class Database:
                          Quantidade INTEGER NOT NULL,
                          Preco REAL NOT NULL,
                          Validade DATE NOT NULL,
-                         Categoria TEXT
+                         Categoria TEXT NOT NULL
                     );"""
         self.cur.execute(produtos)
         self.con.commit()
 
     # Inserindo um produto
-    def insert(self, ID, Produto, Quantidade, Preco, Validade, Categoria):
+    def insert(self, Produto, Quantidade, Preco, Validade, Categoria):
         self.cur.execute("INSERT INTO ProdutosPadaria (Produto, Quantidade, Preco, Validade, Categoria) VALUES (?, ?, ?, ?, ?)",
                          (Produto, Quantidade, Preco, Validade, Categoria))
         self.con.commit()
@@ -43,7 +43,7 @@ class Database:
     
     # Removendo um produto por ID
     def remove(self, ID):
-        self.cur.execute("DELETE FROM ProdutosPadaria WHERE ID = ?", (ID,))
+        self.cur.execute("DELETE FROM ProdutosPadaria WHERE ID =?", (ID,))
         self.con.commit()
 
     # Atualizando um produto
