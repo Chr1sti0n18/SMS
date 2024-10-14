@@ -8,7 +8,7 @@ from dbProducts import Database
 class Read:
     def __init__(self):
         
-        self.db = Database ("products.db")
+        self.db = Database("products.db")
         # Criando a estrutura da janela
         self.main_window = Tk()
         self.main_window.title("Produtos")
@@ -87,6 +87,7 @@ class Read:
         self.table.column("6", minwidth=90, stretch="no", anchor="center")
         self.table["show"] = "headings"
         self.table.pack(fill="both")
+        self.table.bind("<ButtonRelease-1>", self.pegar_dados)
         self.displayAll()
     
         # Botões da aba
@@ -105,8 +106,16 @@ class Read:
         self.botao_deletar.pack(side='right', padx=55)
     
         self.main_window.mainloop()
-        
+
     # Dados da tabela
+    def pegar_dados(self, event):
+        global selected_item 
+        selected_item = self.table.focus()
+        data = self.table.item(selected_item)
+        global row
+        row = data["values"]
+    
+
     def teste (self, choice):
         self.table.delete(*self.table.get_children())
         for row in self.db.fetch(choice):
@@ -117,6 +126,7 @@ class Read:
         self.table.delete(*self.table.get_children())
         for row in self.db.fetch(filter):
             self.table.insert("", END, values = row)
+        
 
     def searchProduct(self):
         search = self.search_box.get().upper()
@@ -128,23 +138,19 @@ class Read:
             self.table.insert("", END, values = row)
 
     def deletar_produto(self):
-        # Obtém o item selecionado
-        selected_item = self.table.selection()
 
         if not selected_item:
             messagebox.showwarning("Aviso", "Nenhum produto selecionado!")
             return
 
-        # Pega os valores do item selecionado
-        produto_selecionado = self.table.item(selected_item, "values")
-
         # Confirmação
-        confirmacao = messagebox.askquestion("Confirmação", f"Tem certeza que deseja deletar o produto {produto_selecionado[1]}?")
+        confirmacao = messagebox.askquestion("Confirmação", f"Tem certeza que deseja deletar o produto {row[1]}?")
         
         if confirmacao == 'yes':
             # Deleta o produto da tabela
-            self.table.delete(selected_item)
-            messagebox.showinfo("Sucesso", f"Produto '{produto_selecionado[1]}' deletado com sucesso.")
+            self.db.remove(row[0])
+            self.displayAll()
+            messagebox.showinfo("Sucesso", f"Produto '{row[1]}' deletado com sucesso.")
         else:
             messagebox.showinfo("Cancelado", "Exclusão do produto cancelada.")
             
