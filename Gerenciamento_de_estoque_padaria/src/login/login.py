@@ -4,10 +4,22 @@ from PIL import Image
 from bd_login import Database
 
 def Login():
-    ""
+    db = Database("bd_users.db")
+
+    uname = username.get()
+    pwd = password.get()
+
+    if uname == "" or pwd == "":
+        message.set("Preencha")
 
 def LoginForm():
     # Definindo váriavel global para a janela principal
+    global username
+    global password
+    global message
+    username = StringVar()
+    password = StringVar()
+    message = StringVar()
     global main_window
     main_window = CTk()
     main_window.title("Login")

@@ -78,7 +78,7 @@ class Create_user:
         self.table_frame=ctk.CTkFrame(self.frame3)
         self.table_frame.pack(anchor="center", pady=15)
         self.table_style=ttk.Style()
-        self.table_style.configure("Treeview", background="#EBEBEB", rowheight=20, fieldbackground='#EBEBEB', 
+        self.table_style.configure("Treeview", rowheight=20, fieldbackground='#EBEBEB', 
                                    font=ctk.CTkFont("Segoe UI", 18, 'bold'))
         self.table_style.configure("Heading", font=ctk.CTkFont(family="Segoe UI", size=18, weight='bold'))
         self.table_style.map('Treeview', background=[('selected', 'grey')])
