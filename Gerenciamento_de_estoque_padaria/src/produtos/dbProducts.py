@@ -9,7 +9,7 @@ class Database:
         
         # Criando a tabela se ela não existir
         produtos = """CREATE TABLE IF NOT EXISTS ProdutosPadaria(
-                         ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                         ID INTEGER PRIMARY KEY,
                          Produto TEXT NOT NULL,
                          Quantidade INTEGER NOT NULL,
                          Preco REAL NOT NULL,
@@ -22,8 +22,8 @@ class Database:
 
     # Inserindo um produto
     def insert(self, ID, Produto, Quantidade, Preco, Validade, Categoria, Lote):
-        self.cur.execute("INSERT INTO ProdutosPadaria (Produto, Quantidade, Preco, Validade, Categoria) VALUES (?, ?, ?, ?, ?)",
-                         (Produto, Quantidade, Preco, Validade, Categoria, Lote))
+        self.cur.execute("INSERT INTO ProdutosPadaria (ID, Produto, Quantidade, Preco, Validade, Categoria, Lote) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                         (ID, Produto, Quantidade, Preco, Validade, Categoria, Lote))
         self.con.commit()
 
     # Obtendo todos os produtos

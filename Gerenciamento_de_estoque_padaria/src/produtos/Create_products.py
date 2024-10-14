@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 import customtkinter as ctk
 from PIL import Image
+from dbProducts import Database 
 #from Read_products import Read
 #from Delete_products import DeletarProduto
 
@@ -25,6 +26,11 @@ class Create:
          # Texto da frame principal
         self.head = ctk.CTkLabel(self.inner_frame1, text="Cadastro de produtos", font=ctk.CTkFont(family="Segoe Script", size=25, weight="bold"), 
                                  fg_color="#FFC07E", text_color="#554131",height=75, anchor="center")
+        
+        self.option_menu = ctk.CTkOptionMenu(self.frame1, values=["Categoria", "Doces", "Enlatados", "Salgados"], fg_color="#EBEBEB", 
+                                                dropdown_fg_color="#EBEBEB", button_color="#EBEBEB", text_color="#554131", 
+                                                    button_hover_color="#EBEBEB", font=ctk.CTkFont(family="Segoe UI", weight="bold"))
+        self.option_menu.pack(side="right", expand=False)
     
         
         self.head.pack(fill="both") 
@@ -54,7 +60,22 @@ class Create:
         
         self.submit_button = ctk.CTkButton(self.inner_frame_form, text="Cadastrar", height=40, width=200, corner_radius=15)
         self.submit_button.grid(row=3, column=1, rowspan=2, columnspan=3, pady=20, padx=45)
-
+        
         self.main_window.mainloop()
+        
+    def createProduct(self): 
+        
+        ID=self.form_codigo.get().upper()
+        Produto=self.form_name.get().upper()
+        Quantidade=self.form_qtd.get().upper()
+        Preco=self.form_price.get().upper()
+        Validade=self.form_val.get().upper()
+        Categoria=self.form
+        
+        
+    def insert(self, ID, Produto, Quantidade, Preco, Validade, Categoria, Lote):
+        self.cur.execute("INSERT INTO ProdutosPadaria (ID, Produto, Quantidade, Preco, Validade, Categoria, Lote) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                         (ID, Produto, Quantidade, Preco, Validade, Categoria, Lote))
+        self.con.commit()
 
 create = Create()
