@@ -7,9 +7,9 @@ class Database:
         self.cursor = self.connect.cursor()
         usuarios = """CREATE TABLE IF NOT EXISTS UsuariosPadaria(
                         ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                        NomeUser TEXT NOT NULLs,
-                        Senha TEXT NOT NULL,
-                        NivelAcess TEXT NOT NULL DEFAULT 'Funcionario' 
+                        NomeUser TEXT,
+                        Senha TEXT,
+                        NivelAcess TEXT DEFAULT 'Funcionario'
                         );"""
         self.cursor.execute(usuarios)
         self.connect.commit()
@@ -36,8 +36,6 @@ class Database:
         rows = self.cursor.fetchone()
         return rows
     
-    def __del__(self):
-        self.connect.close() 
 
 #     def trocarSenha(self, id, novaSenha):
 #         try:
