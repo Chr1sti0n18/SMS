@@ -6,8 +6,9 @@ from PIL import Image
 from dbProducts import Database 
 
 class Read:
-    def __init__(self):
-        
+    def __init__(self, id):
+        self.id = id
+
         self.db = Database ("products.db")
         # Criando a estrutura da janela
         self.main_window = Tk()
