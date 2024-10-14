@@ -140,8 +140,7 @@ class Read:
     def deletar_produto(self):
 
         if not selected_item:
-            messagebox.showwarning("Aviso", "Nenhum produto selecionado!")
-            return
+            return messagebox.showwarning("Aviso", "Nenhum produto selecionado!")
 
         # Confirmação
         confirmacao = messagebox.askquestion("Confirmação", f"Tem certeza que deseja deletar o produto {row[1]}?")

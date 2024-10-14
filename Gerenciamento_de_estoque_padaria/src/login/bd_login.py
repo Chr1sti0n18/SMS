@@ -7,9 +7,9 @@ class Database:
         self.cursor = self.connect.cursor()
         usuarios = """CREATE TABLE IF NOT EXISTS UsuariosPadaria(
                         ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                        NomeUser TEXT NOT NULLs,
+                        NomeUser TEXT NOT NULL,
                         Senha TEXT NOT NULL,
-                        NivelAcess TEXT NOT NULL DEFAULT 'Funcionario' 
+                        NivelAcess TEXT DEFAULT 'Funcionario' 
                         );"""
         self.cursor.execute(usuarios)
         self.connect.commit()
