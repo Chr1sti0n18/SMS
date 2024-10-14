@@ -71,7 +71,7 @@ class Read:
                                    font=ctk.CTkFont(family="Segoe UI", size=10))
         self.table_style.configure("Heading", font=ctk.CTkFont(family="Segoe UI", size=10))
         self.table_style.map('Treeview', background=[('selected', 'grey')])
-        self.table=ttk.Treeview(self.table_frame, columns=(1, 2, 3, 4, 5, 6))
+        self.table=ttk.Treeview(self.table_frame, columns=(1, 2, 3, 4, 5, 6, 7))
         
         # Criando as colunas da tabela
         self.table.heading("1", text="ID")
@@ -86,6 +86,8 @@ class Read:
         self.table.column("5", minwidth=90, stretch="no", anchor="center")
         self.table.heading("6", text="Categoria")
         self.table.column("6", minwidth=90, stretch="no", anchor="center")
+        self.table.heading("7", text="Lote")
+        self.table.column("7", minwidth=90, stretch="no", anchor="center")
         self.table["show"] = "headings"
         self.table.bind("<ButtonRelease-1>", self.pegar_dados)
         self.table.pack(fill="both")
