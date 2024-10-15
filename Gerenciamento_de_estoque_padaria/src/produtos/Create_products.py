@@ -83,13 +83,18 @@ class Create:
         Lote=self.form_lote.get().upper()
     
         if ID == None or Produto == None or Quantidade == None or Preco == None or Validade == None or Categoria == "CATEGORIA" or Lote == None:
+            self.main_window.destroy()
             messagebox.showinfo("Erro", "Não deixe nenhum campo vazio")
+            Create()
         else:
             try:
                 self.db.insert(ID, Produto, Quantidade, Preco, Validade, Categoria, Lote)
+                self.main_window.destroy()
                 messagebox.showinfo("Sucesso!", "Produto cadastrado com sucesso!")
+                Create()
             except Exception as e:
+                self.main_window.destroy()
                 messagebox.showinfo("Erro", "Erro ao cadastrar produto: %s"%(e))
+                Create()
     
     
-create = Create()
