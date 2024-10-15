@@ -15,7 +15,7 @@ class Read:
         self.main_window.state('zoomed')
         self.main_window.iconbitmap('Gerenciamento_de_estoque_padaria/src/assets/logo_sem_fundo.ico')
         self.main_window.config(background="#EBEBEB")
-        self.main_window.resizable(800, FALSE)
+        self.main_window.resizable(FALSE, FALSE)
 
         # Carregando a logo
         logo = ctk.CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logotipo.png"), 
@@ -31,10 +31,7 @@ class Read:
         self.inner_frame1.configure(fg_color='#EBEBEB')
         self.inner_frame1 = ctk.CTkFrame(self.frame1, fg_color="#FFC07E")
         self.inner_frame1.pack(fill="both") 
-        self.option_menu = ctk.CTkOptionMenu(self.inner_frame1, values=["Home", "Produtos", "Criação de Produtos"], fg_color="#EBEBEB", 
-                                                dropdown_fg_color="#EBEBEB", button_color="#EBEBEB", text_color="#554131", 
-                                                    button_hover_color="#EBEBEB", font=ctk.CTkFont(family="Segoe UI", weight="bold"))
-        self.option_menu.pack(side="right", anchor="w", padx=10, expand=False)
+    
         
          # Texto do head da aba
         self.head = ctk.CTkLabel(self.inner_frame1, text="Produtos", font=CTkFont(family="Segoe Script", size=52, weight="bold"), 
@@ -44,27 +41,27 @@ class Read:
         self.image_label = ctk.CTkLabel(self.inner_frame1, image=logo, text='')
         self.image_label.pack(side="left", anchor="w")  # Sem padding, a imagem fica na extrema esquerda
         self.inner_frame1.pack(fill="both")
-        self.head.pack(fill="both", anchor='center') 
+        self.head.place(relx=1, x=-930, y=-5)
         
         # Criando barra de busca
         self.inner_frame2 = ctk.CTkFrame(self.frame1)
         self.inner_frame2.configure(height=600, fg_color='transparent')
         self.search_box=ctk.CTkEntry(self.inner_frame2, placeholder_text="Pesquisar", corner_radius=15, width=150, border_color="#554131", font=CTkFont(family="Segoe UI"))
-        self.search_box.pack(side='left', padx=205)
+        self.search_box.place(relx=1, x=-1340, y=0, anchor = NE)
         self.inner_frame2.pack(fill='both', ipadx=305, pady=10)
         self.search_button=ctk.CTkButton(self.inner_frame2, width = 75, text = 'Buscar', fg_color='#554131',
                                             font=ctk.CTkFont(family="Segoe UI", weight="bold"), text_color='#EBEBEB', command=self.searchProduct)
-        self.search_button.place(relx=1, x=-1150, y=2, anchor = NE)
+        self.search_button.place(relx=1, x=-1260, y=0, anchor = NE)
         
         # Seletor de categoria
         self.combobox = ctk.CTkComboBox(self.inner_frame2, values=["Todos", "Salgados", "Enlatados", "Doces"], 
                                         corner_radius=15, width=150, font=CTkFont(family="Segoe UI"), command=self.teste)
-        self.combobox.pack(side='right', padx=205)
+        self.combobox.pack(side='right', padx=105)
         
         
         # Criando a tabela
         self.table_frame=ctk.CTkFrame(self.main_window, bg_color="white")
-        self.table_frame.pack(anchor="center", pady=15)
+        self.table_frame.pack(anchor="center", pady=20)
         self.table_style=ttk.Style()
         self.table_style.configure("Treeview", background="#EBEBEB", rowheight=20, fieldbackground='#EBEBEB', 
                                    font=ctk.CTkFont(family="Segoe UI", size=10))
@@ -101,11 +98,11 @@ class Read:
         self.inner_frame3.pack(side='left', fill='both')
         self.refresh_button = ctk.CTkButton(self.inner_frame3, width=150, text="Atualizar", command = self.displayAll ,fg_color='#554131',
                                             font=ctk.CTkFont(family="Segoe UI", weight="bold"), text_color='#EBEBEB')
-        self.refresh_button.pack(side='right', padx=205)
+        self.refresh_button.pack(side='right')
         self.botao_deletar = ctk.CTkButton(self.inner_frame3, text="Deletar", 
                                            command=self.deletar_produto, fg_color="#554131", 
                                            text_color="#EBEBEB", width=150, font=ctk.CTkFont(family="Segoe UI", weight="bold"))
-        self.botao_deletar.pack(side='right', padx=55)
+        self.botao_deletar.pack(side='left', padx=445)
     
         self.main_window.mainloop()
 
