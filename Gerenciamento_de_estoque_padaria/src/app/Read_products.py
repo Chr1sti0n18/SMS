@@ -4,6 +4,7 @@ from customtkinter import *
 from tkinter import *
 from PIL import Image
 from dbProducts import Database 
+from Create_products import Create
 
 class Read:
     def __init__(self, id):
@@ -61,15 +62,16 @@ class Read:
         
         
         # Criando a tabela
-        self.table_frame=ctk.CTkFrame(self.main_window, bg_color="white")
+        self.scrollbarFrame=ctk.CTkScrollableFrame(self.main_window, width=1400, height=250, orientation="vertical", fg_color='#EBEBEB')
+        self.scrollbarFrame.pack(fill="y")
+        self.table_frame=ctk.CTkFrame(self.scrollbarFrame, bg_color="white")
         self.table_frame.pack(anchor="center", pady=20)
         self.table_style=ttk.Style()
-        self.table_style.configure("Treeview", background="#EBEBEB", rowheight=20, fieldbackground='#EBEBEB', 
+        self.table_style.configure("Treeview", background="#FFF", rowheight=20, fieldbackground='#EBEBEB', 
                                    font=ctk.CTkFont(family="Segoe UI", size=10))
         self.table_style.configure("Heading", font=ctk.CTkFont(family="Segoe UI", size=10))
         self.table_style.map('Treeview', background=[('selected', 'grey')])
         self.table=ttk.Treeview(self.table_frame, columns=(1, 2, 3, 4, 5, 6, 7))
-        
         # Criando as colunas da tabela
         self.table.heading("1", text="ID")
         self.table.column("1", width=180, stretch="no", anchor="center")
@@ -88,6 +90,7 @@ class Read:
         self.table["show"] = "headings"
         self.table.bind("<ButtonRelease-1>", self.pegar_dados)
         self.table.pack(fill="both")
+    
         self.displayAll()
     
         # Botões da aba
@@ -97,13 +100,20 @@ class Read:
         self.inner_frame3=ctk.CTkFrame(self.frame2)
         self.inner_frame3.configure(fg_color='transparent')
         self.inner_frame3.pack(side='left', fill='both')
+        
         self.refresh_button = ctk.CTkButton(self.inner_frame3, width=150, text="Atualizar", command = self.displayAll ,fg_color='#554131',
                                             font=ctk.CTkFont(family="Segoe UI", weight="bold"), text_color='#EBEBEB')
-        self.refresh_button.pack(side='right')
+        self.refresh_button.pack(side='right', padx=250)
+        
         self.botao_deletar = ctk.CTkButton(self.inner_frame3, text="Deletar", 
                                            command=self.deletar_produto, fg_color="#554131", 
                                            text_color="#EBEBEB", width=150, font=ctk.CTkFont(family="Segoe UI", weight="bold"))
-        self.botao_deletar.pack(side='left', padx=445)
+        self.botao_deletar.pack(side='left', padx=250)
+        
+        self.botao_cadastrar = ctk.CTkButton(self.inner_frame3, text="Cadastrar", 
+                                           command=self.cadastar_produto, fg_color="#554131", 
+                                           text_color="#EBEBEB", width=150, font=ctk.CTkFont(family="Segoe UI", weight="bold"))
+        self.botao_cadastrar.pack(padx=100)
     
         self.main_window.mainloop()
 
@@ -153,7 +163,9 @@ class Read:
         else:
             messagebox.showinfo("Cancelado", "Exclusão do produto cancelada.")
             
-                  
+    def cadastar_produto(self):
+                      Create()
+                      
         
-# app=Read()
+app=Read()
         
