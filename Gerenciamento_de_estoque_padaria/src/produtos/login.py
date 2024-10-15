@@ -1,11 +1,11 @@
 from customtkinter import *
 from customtkinter import CTkImage
 from PIL import Image
-from bd_login import Database
-from produtos import Read_products
+from bd_login import Data
+from Read_products import *
 
 def Login():
-    db = Database("bd_users.db")
+    db = Data("bd_users.db")
 
     uname = username.get()
     pwd = password.get()
@@ -19,29 +19,32 @@ def Login():
 
             message.set("Login Realizado com sucesso!!")
 
-            funcao = rows[4]
+            funcao = rows[3]
 
-            if funcao == "Admin" :
+            if funcao == "Admin":
                 main_window.destroy()
-                tela_admin = Read_products.Read(rows[0])
+                tela_read = Read()
+
+        else:
+            message.set("Nome de usuário ou senha incorreto!")
 
 def LoginForm():
     # Definindo váriavel global para a janela principal
     global username
     global password
     global message
-    username = StringVar()
-    password = StringVar()
-    message = StringVar()
     global main_window
     main_window = CTk()
     main_window.title("Login")
     main_window.geometry("640x480+620+275")
     main_window._set_appearance_mode("system")
     main_window.resizable(False,False)   
+    username = StringVar()
+    password = StringVar()
+    message = StringVar()
     
-    logo = CTkImage(light_image=Image.open("src/assets/logo.png"), 
-                        dark_image=Image.open("src/assets/logo.png"), size=(90, 90))
+    logo = CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), 
+                        dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), size=(90, 90))
     
     # Montando a estrutura da Tela
     title_label = CTkLabel(main_window,text="Qui Pães",fg_color="#FFC07E",text_color="#554131",

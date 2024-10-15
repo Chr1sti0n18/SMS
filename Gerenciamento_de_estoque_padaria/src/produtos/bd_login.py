@@ -1,6 +1,6 @@
 import sqlite3
 
-class Database:
+class Data:
     
     def __init__(self, bd_login):
         self.connect = sqlite3.connect(bd_login)
@@ -9,9 +9,6 @@ class Database:
                         ID INTEGER PRIMARY KEY AUTOINCREMENT,
                         NomeUser TEXT NOT NULL,
                         Senha TEXT NOT NULL,
-                        NivelAcess TEXT DEFAULT 'Funcionario' 
-                        NomeUser TEXT,
-                        Senha TEXT,
                         NivelAcess TEXT DEFAULT 'Funcionario'
                         );"""
         self.cursor.execute(usuarios)

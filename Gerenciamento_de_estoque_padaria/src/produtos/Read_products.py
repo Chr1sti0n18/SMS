@@ -6,8 +6,7 @@ from PIL import Image
 from dbProducts import Database 
 
 class Read:
-    def __init__(self, id):
-        self.id = id
+    def __init__(self):
 
         self.db = Database ("products.db")
         # Criando a estrutura da janela
@@ -158,5 +157,5 @@ class Read:
             
                   
         
-app=Read()
+# app=Read()
         
