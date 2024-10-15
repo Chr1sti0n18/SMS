@@ -14,6 +14,8 @@ class Create:
         self.main_window = Tk()
         self.main_window.title("Cadastro de Produto")
         self.main_window.resizable(False, FALSE)
+       
+        #Tamanho da janela
         self.screen_width = self.main_window.winfo_screenwidth()
         self.screen_height = self.main_window.winfo_screenheight()
         self.width=600
@@ -21,6 +23,7 @@ class Create:
         self.x = (self.screen_width // 2) - (self.width // 2)
         self.y = (self.screen_height // 2) - (self.height // 2)
         self.main_window.geometry(f"{self.width}x{self.height}+{self.x}+{self.y}")
+        
         self.main_window.iconbitmap('Gerenciamento_de_estoque_padaria/src/assets/logo_sem_fundo.ico')
         self.main_window.config(background='#EBEBEB') 
         
@@ -61,7 +64,7 @@ class Create:
         self.form_lote.grid(row=2, column=2, padx=14, sticky=W)
         self.frame_form.configure(fg_color='#EBEBEB')
 
-    
+        #Botão cadastrar
         self.submit_button = ctk.CTkButton(self.inner_frame_form, text="Cadastrar", height=40, width=200, corner_radius=15, command=self.createProduct, 
                                            fg_color="#554131", text_color="#EBEBEB", font=ctk.CTkFont(family="Segoe UI", weight="bold"))
         self.submit_button.grid(row=3, column=1, rowspan=2, columnspan=3, pady=20, padx=45)
