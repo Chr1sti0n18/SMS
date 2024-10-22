@@ -7,7 +7,8 @@ from dbProducts import Database
 from Create_products import Create
 
 class Read:
-    def __init__(self):
+    def __init__(self, id):
+        self.id = id
 
         self.db = Database ("products.db")
         # Criando a estrutura da janela
@@ -175,5 +176,5 @@ class Read:
                       Create()
                       
         
-app=Read()
+# app=Read()
         

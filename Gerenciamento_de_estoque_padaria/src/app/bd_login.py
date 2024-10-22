@@ -37,13 +37,13 @@ class Data:
         return rows
     
 
-#     def trocarSenha(self, id, novaSenha):
-#         try:
-#             self.cur.execute("UPDATE funcionarios SET senha=? WHERE id=?",
-#                          (novaSenha, id))
-#             self.con.commit()
-#             return True
+    def trocarSenha(self, id, novaSenha):
+        try:
+            self.cursor.execute("UPDATE funcionarios SET senha=? WHERE id=?",
+                         (novaSenha, id))
+            self.connect.commit()
+            return True
 
-#         except:
-#             return False
+        except:
+            return False
     
