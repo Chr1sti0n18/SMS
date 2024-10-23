@@ -1,36 +1,114 @@
+from tkinter import *
+from tkinter import ttk, messagebox
 import customtkinter as ctk
-import tkinter as tk
 from PIL import Image
+from dbProducts import Database 
 
 class Update:
 
-    def __init__(self):
+    def __init__(self, ID, name, category, price, qtd, val, lote):
 
-        self.main_window = tk.Tk()
-        self.main_window.title("Atualização de Produto")
-        screen_width = self.main_window.winfo_screenwidth()
-        self.main_window.state("zoomed")
-
-        logo = ctk.CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logotipo.png"), 
-                            dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logotipo.png"), size=(120, 120))
-
-        self.frame1 = ctk.CTkFrame(self.main_window)
-        self.frame1.configure(fg_color='transparent')
-        self.frame1.pack(side="top", fill="y", expand = False, ipadx = 1280)
-
+        self.ID=ID
+        self.name=name
+        self.price=price
+        self.qtd=qtd
+        self.val=val
+        self.lote=lote
+        
+        self.db = Database ("products.db")
+        self.main_window = Tk()
+        self.main_window.title("Alteração de Produto")
+        self.main_window.resizable(False, FALSE)
+       
+        #Tamanho da janela
+        self.screen_width = self.main_window.winfo_screenwidth()
+        self.screen_height = self.main_window.winfo_screenheight()
+        self.width=700
+        self.height=500
+        self.x = (self.screen_width // 2) - (self.width // 2)
+        self.y = (self.screen_height // 2) - (self.height // 2)
+        self.main_window.geometry(f"{self.width}x{self.height}+{self.x}+{self.y}")
+        
+        self.main_window.iconbitmap('Gerenciamento_de_estoque_padaria/src/assets/logo_sem_fundo.ico')
+        self.main_window.config(background='#EBEBEB') 
+        
+        # Criando frame principal
+        self.frame1 = ctk.CTkFrame(self.main_window, fg_color='#EBEBEB')
+        self.frame1.pack(side="top", fill="y", expand = False, ipadx = 500)
         self.inner_frame1 = ctk.CTkFrame(self.frame1, fg_color="#FFC07E")
-        self.inner_frame1.configure(fg_color='#EBEBEB')
         self.inner_frame1.pack(fill="both") 
 
-        self.head = ctk.CTkLabel(self.inner_frame1, text="Atualização de Produtos", font=ctk.CTkFont(family="Segoe Script", size=52, weight="bold"), 
-                                 fg_color="#FFC07E", text_color="#554131",height=120, width=screen_width, anchor="center")
+         # Texto da frame principal
+        self.head = ctk.CTkLabel(self.inner_frame1, text="Alteração de produtos", font=ctk.CTkFont(family="Segoe Script", size=35, weight="bold"), 
+                                 fg_color="#FFC07E", text_color="#554131",height=75, anchor="center")
         
-        # Posicionando logo no head da aba
-        self.image_label = ctk.CTkLabel(self.inner_frame1, image=logo, text='')
-        self.image_label.pack(side="left", anchor="w")  # Sem padding, a imagem fica na extrema esquerda
-        self.head.pack(fill="both", anchor='center')
+    
+        
+        self.head.pack(fill="both") 
 
+        #Criando o formulário de criação de produto
+        self.name_label=ctk.CTkLabel(self.main_window, text="PRODUTO")
+        self.name_label.pack(anchor=S)
+        self.form_name = ctk.CTkEntry(self.main_window, placeholder_text="Nome", height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_name.insert(END, name)
+        self.form_name.pack(anchor=N, pady=5)
+        self.frame_form = ctk.CTkFrame(self.main_window)
+        self.frame_form.pack(fill="both")
+        self.inner_frame_form = ctk.CTkFrame(self.frame_form, fg_color='transparent')
+        self.inner_frame_form.pack()
+        self.form_codigo = ctk.CTkEntry(self.inner_frame_form, height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_codigo.grid(row=1, column=1, padx=15, sticky=N)
+        self.ID_label=ctk.CTkLabel(self.inner_frame_form, text="ID")
+        self.ID_label.grid(row=0, column=1, sticky=S)
+        self.form_codigo.insert(END, ID)
+        self.form_codigo.configure(state="disabled")
+        self.form_category = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Categoria", height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_category.grid(row=0, column=2, padx=15, sticky=N)
+        self.form_category.insert(END, category)
+        self.form_price = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Preço", height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_price.grid(row=1, column=1, pady=10, padx=15, sticky=E)
+        self.form_price.insert(END, price)
+        self.form_qtd = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Quantidade", height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_qtd.grid(row=1, column=2, pady=10, padx=15, sticky=W)
+        self.form_qtd.insert(END, qtd)
+        self.form_val = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Validade", height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_val.grid(row=2, column=1, pady=10, padx=15, sticky=E)
+        self.form_val.insert(END, val)
+        self.form_lote = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Lote", height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_lote.grid(row=2, column=2, padx=14, sticky=W)
+        self.form_lote.insert(END, lote)
+        
+        self.frame_form.configure(fg_color='#EBEBEB')
+
+        #Botão alterar
+        self.submit_button = ctk.CTkButton(self.inner_frame_form, text="Alterar", height=40, width=200, corner_radius=15, 
+                                           fg_color="#554131", text_color="#EBEBEB", font=ctk.CTkFont(family="Segoe UI", weight="bold"))
+        self.submit_button.grid(row=3, column=1, rowspan=2, columnspan=3, pady=20, padx=45)
+        
         self.main_window.mainloop()
-
-
-Update()
+        
+    def Update_Product(self, primID):
+        
+        Produto=self.form_name.get().upper()
+        Quantidade=self.form_qtd.get()
+        Preco=self.form_price.get()
+        Validade=self.form_val.get()
+        Categoria=self.form_category.get().upper()
+        Lote=self.form_lote.get().upper()
+        
+        if  Produto == None or Quantidade == None or Preco == None or Validade == None or Categoria == None or Lote == None:
+            self.main_window.destroy()
+            messagebox.showinfo("Erro", "Não deixe nenhum campo vazio")
+            Update()
+        else:
+            try:
+                self.db.update(self, Produto, Quantidade, Preco, Validade, Categoria, Lote, primID)
+                self.main_window.destroy()
+                messagebox.showinfo("Sucesso!", "Produto alterado com sucesso!")
+                
+            except Exception as e:
+                self.main_window.destroy()
+                messagebox.showinfo("Erro", "Erro ao alterar produto: %s"%(e))    
+        
+        
+Update=Update(1231231231, 312312312, "XERECA", 312312312, 312312312, 312312312, 12312312)        

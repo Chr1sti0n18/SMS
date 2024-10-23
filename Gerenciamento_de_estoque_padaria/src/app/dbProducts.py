@@ -50,9 +50,9 @@ class Database:
     # Atualizando um produto
     def update(self, ID, Produto, Quantidade, Preco, Validade, Categoria, Lote):
         self.cur.execute("""UPDATE ProdutosPadaria 
-                            SET Produto = ?, Quantidade = ?, Preco = ?, Validade = ?, Categoria = ? 
+                            SET Produto = ?, Quantidade = ?, Preco = ?, Validade = ?, Categoria = ?, Lote? 
                             WHERE ID = ?""",
-                         (Produto, Quantidade, Preco, Validade, Categoria, ID, Lote))
+                         (Produto, Quantidade, Preco, Validade, Categoria, Lote, ID))
         self.con.commit()
 
     # Fechando a conexão com o banco de dados

@@ -55,6 +55,14 @@ class Read:
                                             font=ctk.CTkFont(family="Segoe UI", weight="bold"), text_color='#EBEBEB', command=self.searchProduct)
         self.search_button.place(relx=1, x=-1260, y=0, anchor = NE)
         
+        #Botão de refresh
+        self.refresh_icon=ctk.CTkImage(light_image = Image.open("Gerenciamento_de_estoque_padaria/src/assets/refresh.png"), 
+                                        dark_image = Image.open("Gerenciamento_de_estoque_padaria/src/assets/refresh.png"), size=(25, 25))
+        self.search_button=ctk.CTkButton(self.inner_frame2, width = 30, height= 35, text = '',image=self.refresh_icon, fg_color='transparent',
+                                            font=ctk.CTkFont(family="Segoe UI", weight="bold"), text_color='#EBEBEB', hover_color= "#FFF", 
+                                            command=self.displayAll)
+        self.search_button.place(relx=1, x=-320, y=-2, anchor = NW)
+        
         # Seletor de categoria
         self.combobox = ctk.CTkComboBox(self.inner_frame2, values=["Todos", "Salgados", "Enlatados", "Doces"], 
                                         corner_radius=15, width=150, font=CTkFont(family="Segoe UI"), command=self.teste)
@@ -100,8 +108,9 @@ class Read:
         self.inner_frame3=ctk.CTkFrame(self.frame2)
         self.inner_frame3.configure(fg_color='transparent')
         self.inner_frame3.pack(side='left', fill='both')
+    
         
-        self.refresh_button = ctk.CTkButton(self.inner_frame3, width=150, text="Atualizar", command = self.displayAll ,fg_color='#554131',
+        self.refresh_button = ctk.CTkButton(self.inner_frame3, width=150, text="Alterar", command = self.displayAll ,fg_color='#554131',
                                             font=ctk.CTkFont(family="Segoe UI", weight="bold"), text_color='#EBEBEB')
         self.refresh_button.pack(side='right', padx=250)
         
