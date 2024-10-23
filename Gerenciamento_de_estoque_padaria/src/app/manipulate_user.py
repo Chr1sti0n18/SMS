@@ -1,4 +1,4 @@
-from bd_login import Database
+from bd_login import Data
 import customtkinter as ctk
 import tkinter as tk
 from tkinter import END, ttk
@@ -8,7 +8,7 @@ from PIL import Image
 class Create_user: 
 
     def __init__(self):
-        self.db = Database("bd_users.db")
+        self.db = Data("bd_users.db")
 
         self.main_window = tk.Tk()
         self.main_window.title("Cadastro de Usuários")
@@ -27,7 +27,7 @@ class Create_user:
         # Criando frame principal
         self.inner_frame1 = ctk.CTkFrame(self.main_window, fg_color="#FFC07E")
         self.inner_frame1.pack(fill="y", expand = False, side="top", ipadx=1280) 
-        self.frame1 = ctk.CTkFrame(self.main_window)
+        self.frame1 = ctk.CTkFrame(self.main_window, fg_color="transparent")
         self.frame1.pack(side="top", fill="y", expand = False, ipadx = 1280, ipady=30)
 
         self.head = ctk.CTkLabel(self.inner_frame1, text="Cadastro de usuários", font=("Segoe Script", 52, "bold"), 
@@ -39,17 +39,17 @@ class Create_user:
         self.head.pack(fill="both", pady=40)
 
         self.labelNome = ctk.CTkLabel(self.frame1, text="Nome do Usuário", fg_color="transparent", font=ctk.CTkFont("Segoe UI", 18, 'bold'), text_color="#554131")
-        self.labelNome.pack(padx=10, ipady=20)
+        self.labelNome.pack(padx=10, ipady=20, anchor="s")
         self.txt_Nome = ctk.CTkEntry(self.frame1, textvariable=self.nome, font=ctk.CTkFont("Segoe UI", 18, 'bold'), width=130)
         self.txt_Nome.pack(padx=10, pady=5)
 
         self.label_Senha = ctk.CTkLabel(self.frame1, text="Senha", fg_color="transparent", font=ctk.CTkFont("Segoe UI", 18, 'bold'), text_color="#554131")
-        self.label_Senha.pack(padx=10, ipady=20)
+        self.label_Senha.pack(padx=10, ipady=20, anchor="s")
         self.txt_Senha = ctk.CTkEntry(self.frame1, textvariable=self.senha, font=ctk.CTkFont("Segoe UI", 18, 'bold'), width=130, show="*")
         self.txt_Senha.pack(padx=10, pady=5)
 
         self.label_Nivel_acesso = ctk.CTkLabel(self.frame1, text="Cargo do Usuário", fg_color="transparent", font=ctk.CTkFont("Segoe UI", 18, 'bold'), text_color="#554131")
-        self.label_Nivel_acesso.pack(padx=10, ipady=20)
+        self.label_Nivel_acesso.pack(padx=10, ipady=20, anchor="s")
         self.txt_Nivel_acesso= ctk.CTkEntry(self.frame1, textvariable=self.nivel_acesso, font=ctk.CTkFont("Segoe UI", 18, 'bold'), width=130)
         self.txt_Nivel_acesso.pack(padx=10, pady=5)
 
