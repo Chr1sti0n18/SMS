@@ -3,12 +3,10 @@ from tkinter import ttk, messagebox
 import customtkinter as ctk
 from PIL import Image
 from dbProducts import Database 
-#from Read_products import Read
-#from Delete_products import DeletarProduto
 
 class Update:
 
-    def __init__(self, ID, name, price, qtd, val, lote):
+    def __init__(self, ID, name, category, price, qtd, val, lote):
 
         self.ID=ID
         self.name=name
@@ -25,8 +23,8 @@ class Update:
         #Tamanho da janela
         self.screen_width = self.main_window.winfo_screenwidth()
         self.screen_height = self.main_window.winfo_screenheight()
-        self.width=600
-        self.height=400
+        self.width=700
+        self.height=500
         self.x = (self.screen_width // 2) - (self.width // 2)
         self.y = (self.screen_height // 2) - (self.height // 2)
         self.main_window.geometry(f"{self.width}x{self.height}+{self.x}+{self.y}")
@@ -44,26 +42,29 @@ class Update:
         self.head = ctk.CTkLabel(self.inner_frame1, text="Alteração de produtos", font=ctk.CTkFont(family="Segoe Script", size=35, weight="bold"), 
                                  fg_color="#FFC07E", text_color="#554131",height=75, anchor="center")
         
-        self.cat_menu = ctk.CTkOptionMenu(self.frame1, values=["Categoria", "Doces", "Enlatados", "Salgados"], fg_color="#554131", 
-                                                dropdown_fg_color="#EBEBEB", button_color="#554131", text_color="#EBEBEB", 
-                                                    button_hover_color="#554131", font=ctk.CTkFont(family="Segoe UI", weight="bold"))
-        self.cat_menu.pack( expand=False, pady=10)
     
         
         self.head.pack(fill="both") 
 
         #Criando o formulário de criação de produto
+        self.name_label=ctk.CTkLabel(self.main_window, text="PRODUTO")
+        self.name_label.pack(anchor=S)
+        self.form_name = ctk.CTkEntry(self.main_window, placeholder_text="Nome", height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_name.insert(END, name)
+        self.form_name.pack(anchor=N, pady=5)
         self.frame_form = ctk.CTkFrame(self.main_window)
-        self.frame_form.pack(fill="both", expand=True)
+        self.frame_form.pack(fill="both")
         self.inner_frame_form = ctk.CTkFrame(self.frame_form, fg_color='transparent')
-        self.inner_frame_form.pack(expand=True)
+        self.inner_frame_form.pack()
         self.form_codigo = ctk.CTkEntry(self.inner_frame_form, height=40, width=200, corner_radius=15, border_color="#554131")
-        self.form_codigo.grid(row=0, column=1 , pady=10, padx=15, sticky=E)
+        self.form_codigo.grid(row=1, column=1, padx=15, sticky=N)
+        self.ID_label=ctk.CTkLabel(self.inner_frame_form, text="ID")
+        self.ID_label.grid(row=0, column=1, sticky=S)
         self.form_codigo.insert(END, ID)
         self.form_codigo.configure(state="disabled")
-        self.form_name = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Nome", height=40, width=200, corner_radius=15, border_color="#554131")
-        self.form_name.grid(row=0, column=2, pady=10, padx=15, sticky=W)
-        self.form_name.insert(END, name)
+        self.form_category = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Categoria", height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_category.grid(row=0, column=2, padx=15, sticky=N)
+        self.form_category.insert(END, category)
         self.form_price = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Preço", height=40, width=200, corner_radius=15, border_color="#554131")
         self.form_price.grid(row=1, column=1, pady=10, padx=15, sticky=E)
         self.form_price.insert(END, price)
@@ -92,10 +93,10 @@ class Update:
         Quantidade=self.form_qtd.get()
         Preco=self.form_price.get()
         Validade=self.form_val.get()
-        Categoria=self.cat_menu.get().upper()
+        Categoria=self.form_category.get().upper()
         Lote=self.form_lote.get().upper()
         
-        if  Produto == None or Quantidade == None or Preco == None or Validade == None or Categoria == "CATEGORIA" or Lote == None:
+        if  Produto == None or Quantidade == None or Preco == None or Validade == None or Categoria == None or Lote == None:
             self.main_window.destroy()
             messagebox.showinfo("Erro", "Não deixe nenhum campo vazio")
             Update()
@@ -110,4 +111,4 @@ class Update:
                 messagebox.showinfo("Erro", "Erro ao alterar produto: %s"%(e))    
         
         
-Update=Update(1231231231, 312312312, 312312312, 312312312, 312312312, 312312312)        
+Update=Update(1231231231, 312312312, "XERECA", 312312312, 312312312, 312312312, 12312312)        
