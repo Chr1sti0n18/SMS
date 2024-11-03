@@ -48,13 +48,12 @@ class Database:
         self.con.commit()
 
     # Atualizando um produto
-    def update(self, ID, Produto, Quantidade, Preco, Validade, Categoria, Lote):
+    def update(self, Produto, Quantidade, Preco, Validade, Categoria, Lote, ID):
         self.cur.execute("""UPDATE ProdutosPadaria 
-                            SET Produto = ?, Quantidade = ?, Preco = ?, Validade = ?, Categoria = ?, Lote? 
+                            SET Produto = ?, Quantidade = ?, Preco = ?, Validade = ?, Categoria = ?, Lote = ? 
                             WHERE ID = ?""",
                          (Produto, Quantidade, Preco, Validade, Categoria, Lote, ID))
         self.con.commit()
-
     # Fechando a conexão com o banco de dados
     def __del__(self):
         self.con.close()

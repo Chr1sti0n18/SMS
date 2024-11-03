@@ -5,6 +5,8 @@ from tkinter import *
 from PIL import Image
 from dbProducts import Database 
 from Create_products import Create
+from Update_products import Update
+import time
 
 class Read:
     def __init__(self, id):
@@ -58,10 +60,10 @@ class Read:
         #Botão de refresh
         self.refresh_icon=ctk.CTkImage(light_image = Image.open("Gerenciamento_de_estoque_padaria/src/assets/refresh.png"), 
                                         dark_image = Image.open("Gerenciamento_de_estoque_padaria/src/assets/refresh.png"), size=(25, 25))
-        self.search_button=ctk.CTkButton(self.inner_frame2, width = 30, height= 35, text = '',image=self.refresh_icon, fg_color='transparent',
+        self.refresh_button=ctk.CTkButton(self.inner_frame2, width = 30, height= 35, text = '',image=self.refresh_icon, fg_color='transparent',
                                             font=ctk.CTkFont(family="Segoe UI", weight="bold"), text_color='#EBEBEB', hover_color= "#FFF", 
                                             command=self.displayAll)
-        self.search_button.place(relx=1, x=-320, y=-2, anchor = NW)
+        self.refresh_button.place(relx=1, x=-320, y=-2, anchor = NW)
         
         # Seletor de categoria
         self.combobox = ctk.CTkComboBox(self.inner_frame2, values=["Todos", "Salgados", "Enlatados", "Doces"], 
@@ -110,9 +112,9 @@ class Read:
         self.inner_frame3.pack(side='left', fill='both')
     
         
-        self.refresh_button = ctk.CTkButton(self.inner_frame3, width=150, text="Alterar", command = self.displayAll ,fg_color='#554131',
+        self.update_button = ctk.CTkButton(self.inner_frame3, width=150, text="Alterar", command = self.update_produto ,fg_color='#554131',
                                             font=ctk.CTkFont(family="Segoe UI", weight="bold"), text_color='#EBEBEB')
-        self.refresh_button.pack(side='right', padx=250)
+        self.update_button.pack(side='right', padx=250)
         
         self.botao_deletar = ctk.CTkButton(self.inner_frame3, text="Deletar", 
                                            command=self.deletar_produto, fg_color="#554131", 
@@ -125,7 +127,7 @@ class Read:
         self.botao_cadastrar.pack(padx=100)
     
         self.main_window.mainloop()
-
+            
     # Dados da tabela
     def pegar_dados(self, event):
         global selected_item 
@@ -174,7 +176,11 @@ class Read:
             
     def cadastar_produto(self):
                       Create()
-                      
+                   
+    def update_produto(self):
+        selected_item = self.table.selection()[0]   
+        values = self.table.item(selected_item, "values")
+        Update(values[0], values[1], values[5], values[3], values[2], values[4], values[6])          
         
-# app=Read()
+app=Read(3)
         
