@@ -18,8 +18,8 @@ class Create:
         #Tamanho da janela
         self.screen_width = self.main_window.winfo_screenwidth()
         self.screen_height = self.main_window.winfo_screenheight()
-        self.width=600
-        self.height=400
+        self.width=700
+        self.height=500
         self.x = (self.screen_width // 2) - (self.width // 2)
         self.y = (self.screen_height // 2) - (self.height // 2)
         self.main_window.geometry(f"{self.width}x{self.height}+{self.x}+{self.y}")
@@ -37,37 +37,53 @@ class Create:
         self.head = ctk.CTkLabel(self.inner_frame1, text="Cadastro de produtos", font=ctk.CTkFont(family="Segoe Script", size=35, weight="bold"), 
                                  fg_color="#FFC07E", text_color="#554131",height=75, anchor="center")
         
-        self.cat_menu = ctk.CTkOptionMenu(self.frame1, values=["Categoria", "Doces", "Enlatados", "Salgados"], fg_color="#554131", 
-                                                dropdown_fg_color="#EBEBEB", button_color="#554131", text_color="#EBEBEB", 
-                                                    button_hover_color="#554131", font=ctk.CTkFont(family="Segoe UI", weight="bold"))
-        self.cat_menu.pack( expand=False, pady=10)
-    
-        
         self.head.pack(fill="both") 
 
         #Criando o formulário de criação de produto
-        self.frame_form = ctk.CTkFrame(self.main_window)
-        self.frame_form.pack(fill="both", expand=True)
+        self.name_label=ctk.CTkLabel(self.main_window, text="Produto", font=ctk.CTkFont("Segoe UI", 15, "bold"))
+        self.name_label.pack(anchor=S, pady = 8)
+        self.form_name = ctk.CTkEntry(self.main_window, height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_name.pack(anchor=N)
+       
+        self.frame_form = ctk.CTkFrame(self.main_window, fg_color='#EBEBEB')
+        self.frame_form.pack(fill="both")
         self.inner_frame_form = ctk.CTkFrame(self.frame_form, fg_color='transparent')
-        self.inner_frame_form.pack(expand=True)
-        self.form_codigo = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Id do produto", height=40, width=200, corner_radius=15, border_color="#554131")
-        self.form_codigo.grid(row=0, column=1 , pady=10, padx=15, sticky=E)
-        self.form_name = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Nome", height=40, width=200, corner_radius=15, border_color="#554131")
-        self.form_name.grid(row=0, column=2, pady=10, padx=15, sticky=W)
-        self.form_price = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Preço", height=40, width=200, corner_radius=15, border_color="#554131")
-        self.form_price.grid(row=1, column=1, pady=10, padx=15, sticky=E)
-        self.form_qtd = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Quantidade", height=40, width=200, corner_radius=15, border_color="#554131")
-        self.form_qtd.grid(row=1, column=2, pady=10, padx=15, sticky=W)
-        self.form_val = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Validade", height=40, width=200, corner_radius=15, border_color="#554131")
-        self.form_val.grid(row=2, column=1, pady=10, padx=15, sticky=E)
-        self.form_lote = ctk.CTkEntry(self.inner_frame_form, placeholder_text="Lote", height=40, width=200, corner_radius=15, border_color="#554131")
-        self.form_lote.grid(row=2, column=2, padx=14, sticky=W)
-        self.frame_form.configure(fg_color='#EBEBEB')
+        
+        self.inner_frame_form.pack()
+        self.form_codigo = ctk.CTkEntry(self.inner_frame_form, height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_codigo.grid(row=1, column=1, padx=15, sticky=N)
+        self.ID_label=ctk.CTkLabel(self.inner_frame_form, text="ID", font=ctk.CTkFont("Segoe UI", 15, "bold"))
+        self.ID_label.grid(row=0, column=1, sticky=S)
+        
+        self.category_label=ctk.CTkLabel(self.inner_frame_form, text="Categoria", font=ctk.CTkFont("Segoe UI", 15, "bold"))
+        self.category_label.grid(row=0, column=2)
+        self.form_category = ctk.CTkEntry(self.inner_frame_form, height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_category.grid(row=1, column=2, padx=15, sticky=N)
+        
+        self.price_label=ctk.CTkLabel(self.inner_frame_form, text="Preço", font=ctk.CTkFont("Segoe UI", 15, "bold"))
+        self.price_label.grid(row=3, column=1)
+        self.form_price = ctk.CTkEntry(self.inner_frame_form, height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_price.grid(row=4, column=1, padx=15, sticky=E)
+        
+        self.qtd_label=ctk.CTkLabel(self.inner_frame_form, text="Quantidade", font=ctk.CTkFont("Segoe UI", 15, "bold"))
+        self.qtd_label.grid(row=3, column=2)
+        self.form_qtd = ctk.CTkEntry(self.inner_frame_form, height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_qtd.grid(row=4, column=2, padx=15, sticky=W)
+        
+        self.val_label=ctk.CTkLabel(self.inner_frame_form, text="Validade", font=ctk.CTkFont("Segoe UI", 15, "bold"))
+        self.val_label.grid(row=5, column=1)
+        self.form_val = ctk.CTkEntry(self.inner_frame_form, height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_val.grid(row=6, column=1, padx=15, sticky=E)
 
+        self.lote_label=ctk.CTkLabel(self.inner_frame_form, text="Lote", font=ctk.CTkFont("Segoe UI", 15, "bold"))
+        self.lote_label.grid(row=5, column=2)
+        self.form_lote = ctk.CTkEntry(self.inner_frame_form, height=40, width=200, corner_radius=15, border_color="#554131")
+        self.form_lote.grid(row=6, column=2, padx=14, sticky=W)
+        
         #Botão cadastrar
         self.submit_button = ctk.CTkButton(self.inner_frame_form, text="Cadastrar", height=40, width=200, corner_radius=15, command=self.createProduct, 
                                            fg_color="#554131", text_color="#EBEBEB", font=ctk.CTkFont(family="Segoe UI", weight="bold"))
-        self.submit_button.grid(row=3, column=1, rowspan=2, columnspan=3, pady=20, padx=45)
+        self.submit_button.grid(row=7, column=1, rowspan=2, columnspan=3, pady=30, padx=45)
         
         self.main_window.mainloop()
         
@@ -79,7 +95,7 @@ class Create:
         Quantidade=self.form_qtd.get()
         Preco=self.form_price.get()
         Validade=self.form_val.get()
-        Categoria=self.cat_menu.get().upper()
+        Categoria=self.form_category.get().upper()
         Lote=self.form_lote.get().upper()
     
         if ID == None or Produto == None or Quantidade == None or Preco == None or Validade == None or Categoria == "CATEGORIA" or Lote == None:
@@ -96,5 +112,4 @@ class Create:
                 self.main_window.destroy()
                 messagebox.showinfo("Erro", "Erro ao cadastrar produto: %s"%(e))
                 Create()
-    
     

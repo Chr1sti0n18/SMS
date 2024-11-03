@@ -27,8 +27,9 @@ class Data:
         self.cursor.execute("DELETE FROM UsuariosPadaria WHERE ID =?", (id,))
         self.connect.commit()
 
-    def update(self, nome, senha, nivel_acesso):
-        self.cursor.execute("UPDATE UsuariosPadaria SET NomeUser=?, Senha=?, NivelAcess=?", (nome, senha, nivel_acesso))
+    def update(self, nome, senha, nivel_acesso, ID):
+        self.cursor.execute("""UPDATE UsuariosPadaria SET NomeUser=?, Senha=?, NivelAcess=?
+                            WHERE ID=?""", (nome, senha, nivel_acesso, ID))
         self.connect.commit()
 
     def logar(self, nome, senha):
