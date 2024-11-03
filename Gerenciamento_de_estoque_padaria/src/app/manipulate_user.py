@@ -147,7 +147,9 @@ class Create_user:
             messagebox.showerror("Erro na entrada", "Por favor preencha todos os campos")
             
         else:
-            self.db.update(row[0], self.txt_Nome.get(), self.txt_Senha.get(), self.txt_Nivel_acesso.get())
+            selected_item = self.table.selection()[0]   
+            values = self.table.item(selected_item, "values")
+            self.db.update(self.txt_Nome.get(), self.txt_Senha.get(), self.txt_Nivel_acesso.get(), values[0])
             messagebox.showinfo("Sucesso", "Usuário Atualizado")
             self.clearAll()
             self.displayAll()
