@@ -95,7 +95,7 @@ class Create:
         Quantidade=self.form_qtd.get()
         Preco=self.form_price.get()
         Validade=self.form_val.get()
-        Categoria=self.form_category.upper()
+        Categoria=self.form_category.get().upper()
         Lote=self.form_lote.get().upper()
     
         if ID == None or Produto == None or Quantidade == None or Preco == None or Validade == None or Categoria == "CATEGORIA" or Lote == None:
