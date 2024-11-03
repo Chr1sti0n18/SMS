@@ -7,9 +7,7 @@ from dbProducts import Database
 from Create_products import Create
 
 class Read:
-    def __init__(self, id):
-        self.id = id
-
+    def __init__(self):
         self.db = Database ("products.db")
         # Criando a estrutura da janela
         self.main_window = Tk()
@@ -174,7 +172,5 @@ class Read:
             
     def cadastar_produto(self):
                       Create()
-                      
-        
-app=Read(4325423)
+
         

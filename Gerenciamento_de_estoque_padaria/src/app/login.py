@@ -4,6 +4,7 @@ from PIL import Image
 from bd_login import Data
 from Read_products import *
 from tkinter import messagebox
+from App_menu import *
 
 def Login():
     db = Data("bd_users.db")
@@ -24,9 +25,11 @@ def Login():
 
             if funcao == "Admin":
                 main_window.destroy()
-                tela_read = Read(rows[0])
+                tela_menu = App_menu()
             
-
+            if funcao == "Padrão":
+                main_window.destroy()
+                tela_read = Read()
 
         else:
             messagebox.showerror("Erro", "Nome de usuário ou senha incorreto!")

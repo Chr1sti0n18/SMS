@@ -5,7 +5,7 @@ from tkinter import END, ttk
 from tkinter import messagebox
 from PIL import Image
 
-class Create_user: 
+class Manipulate: 
 
     def __init__(self):
         self.db = Data("bd_users.db")
@@ -157,6 +157,3 @@ class Create_user:
         messagebox.showinfo("Sucesso", "Usuário Excluído")
         self.clearAll()
         self.displayAll()
-
-
-Create_user()
