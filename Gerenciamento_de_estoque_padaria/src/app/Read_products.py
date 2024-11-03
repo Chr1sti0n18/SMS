@@ -40,7 +40,7 @@ class Read:
                                  fg_color="#FFC07E", text_color="#554131",height=120, anchor="center")
         
         # Posicionando logo no head da aba
-        self.image_label = ctk.CTkLabel(self.inner_frame1, image=logo, text='')
+        self.image_label = ctk.CTkLabel(self.inner_frame1, image=logo)
         self.image_label.pack(side="left", anchor="w")  # Sem padding, a imagem fica na extrema esquerda
         self.inner_frame1.pack(fill="both")
         self.head.place(relx=1, x=-930, y=-5)
@@ -180,5 +180,4 @@ class Read:
         values = self.table.item(selected_item, "values")
         Update(values[0], values[1], values[5], values[3], values[2], values[4], values[6])          
         
-app=Read(4325423)
         
