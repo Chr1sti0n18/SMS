@@ -2,7 +2,7 @@ import tkinter as tk
 import customtkinter as ctk
 from PIL import Image, ImageTk
 from Read_products import *
-from Manipulate_user import *
+from manipulate_user import *
 
 class App_menu:
     def __init__(self):
@@ -10,6 +10,7 @@ class App_menu:
         main_window = tk.Tk()
         main_window.title("Menu")
         main_window.state("zoomed")
+        main_window.iconbitmap('Gerenciamento_de_estoque_padaria/src/assets/logo_sem_fundo.ico')
         screen_width = main_window.winfo_width()
         screen_height = main_window.winfo_height()
         self.frame1 = ctk.CTkFrame(main_window)

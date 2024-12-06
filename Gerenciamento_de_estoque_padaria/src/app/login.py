@@ -43,6 +43,7 @@ def LoginForm():
     main_window.title("Login")
     main_window.geometry("640x480+620+275")
     main_window._set_appearance_mode("system")
+    main_window.iconbitmap('Gerenciamento_de_estoque_padaria/src/assets/logo_sem_fundo.ico')
     main_window.resizable(False,False)   
     username = StringVar()
     password = StringVar()

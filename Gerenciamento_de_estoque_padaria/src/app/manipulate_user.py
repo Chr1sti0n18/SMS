@@ -15,6 +15,7 @@ class Manipulate:
         screen_width = self.main_window.winfo_screenwidth()
         screen_height = self.main_window.winfo_screenheight()
         self.main_window.geometry(f"{screen_width}x{screen_height}+0+0")
+        self.main_window.iconbitmap('Gerenciamento_de_estoque_padaria/src/assets/logo_sem_fundo.ico')
         self.main_window.state("zoomed")
 
         self.nome = ctk.StringVar()
