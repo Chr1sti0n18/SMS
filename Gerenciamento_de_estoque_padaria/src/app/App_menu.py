@@ -1,7 +1,7 @@
 import tkinter as tk
 import customtkinter as ctk
 from PIL import Image, ImageTk
-from Read_products import *
+from Products import *
 from manipulate_user import *
 
 class App_menu:

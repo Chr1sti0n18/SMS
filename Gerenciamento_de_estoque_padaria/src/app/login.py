@@ -2,7 +2,7 @@ from customtkinter import *
 from customtkinter import CTkImage
 from PIL import Image
 from bd_login import Data
-from Read_products import *
+from Products import *
 from tkinter import messagebox
 from App_menu import *
 
