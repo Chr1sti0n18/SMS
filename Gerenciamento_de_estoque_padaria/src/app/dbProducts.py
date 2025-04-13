@@ -36,6 +36,12 @@ class Database:
         rows = self.cur.fetchall()
         return rows
     
+    # Obtendo um produto por ID
+    def searchID(self, searchID):
+        self.cur.execute("SELECT * FROM ProdutosPadaria WHERE ID = ?", (searchID,))
+        rows = self.cur.fetchone()
+        return rows
+    
     # Obtendo um produto por nome
     def search(self, search):
         self.cur.execute("SELECT * FROM ProdutosPadaria WHERE Produto = ?", (search,))
