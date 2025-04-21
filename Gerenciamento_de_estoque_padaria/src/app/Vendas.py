@@ -1,27 +1,29 @@
-from dbVendas import Data
 import customtkinter as ctk
 import tkinter as tk
 from tkinter import END, ttk
 from tkinter import messagebox
 from PIL import Image
-from Cadastro_venda import GetProduto
+import os
 
 class Vendas: 
 
     def __init__(self):
-        
-        self.db = Data("vendas.db")
+        from src import Data2
+        self.db = Data2("vendas.db")
 
         self.main_window = tk.Tk()
         self.main_window.title("Cadastro de vendas")
         screen_width = self.main_window.winfo_screenwidth()
         screen_height = self.main_window.winfo_screenheight()
         self.main_window.geometry(f"{screen_width}x{screen_height}+0+0")
-        self.main_window.iconbitmap('Gerenciamento_de_estoque_padaria/src/assets/logo_sem_fundo.ico')
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        ICON_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo_sem_fundo.ico')
+        self.main_window.iconbitmap(ICON_PATH)
         self.main_window.state("zoomed")
         
-        logo = ctk.CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logotipo.png"), 
-                            dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logotipo.png"), size=(90,90))  
+        LOGO_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logotipo.png')
+        logo = ctk.CTkImage(light_image=Image.open(LOGO_PATH), 
+                            dark_image=Image.open(LOGO_PATH), size=(90,90))  
         
         # Criando frame principal
         self.inner_frame1 = ctk.CTkFrame(self.main_window, fg_color="#FFC07E")
@@ -98,6 +100,7 @@ class Vendas:
             self.table.insert("", END, values=row)
             
     def inserir_venda(self):
+        from src import GetProduto
         GetProduto()
 
     def del_venda(self):

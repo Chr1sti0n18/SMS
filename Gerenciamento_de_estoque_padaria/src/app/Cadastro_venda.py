@@ -1,8 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
 import customtkinter as ctk
-from dbProducts import Database 
-from dbVendas import Data
 #from Read_products import Read
 #from Delete_products import DeletarProduto
 
@@ -10,7 +8,9 @@ class GetProduto:
 
     def __init__(self):
         #Conexões bancos de dados
+        from src import Database
         self.db = Database ("products.db")
+        from src import Data
         self.dbVendas =  Data ("vendas.db")
         
         #Criação janela principal

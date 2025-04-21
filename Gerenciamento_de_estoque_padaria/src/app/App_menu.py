@@ -1,9 +1,7 @@
 import tkinter as tk
 import customtkinter as ctk
 from PIL import Image, ImageTk
-from Products import *
-from manipulate_user import *
-from Vendas import Vendas
+import os
 
 class App_menu:
     def __init__(self):
@@ -11,15 +9,17 @@ class App_menu:
         main_window = tk.Tk()
         main_window.title("Menu")
         main_window.state("zoomed")
-        main_window.iconbitmap('Gerenciamento_de_estoque_padaria/src/assets/logo_sem_fundo.ico')
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        ICON_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo_sem_fundo.ico')
+        main_window.iconbitmap(ICON_PATH)
         screen_width = main_window.winfo_width()
         self.frame1 = ctk.CTkFrame(main_window, fg_color="#FFF")
         self.frame1.pack(side="top", fill="y", expand = False, ipadx = 1280)
-        main_window.resizable(False, FALSE)
-        main_window.iconbitmap('Gerenciamento_de_estoque_padaria/src/assets/logo_sem_fundo.ico')
+        main_window.resizable(False, False)
 
-        logo = ctk.CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logotipo.png"), 
-                            dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logotipo.png"), size=(200, 200))
+        LOGO_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logotipo.png')
+        logo = ctk.CTkImage(light_image=Image.open(LOGO_PATH), 
+                            dark_image=Image.open(LOGO_PATH), size=(200, 200))
 
         
         # Texto do inner frame
@@ -32,17 +32,20 @@ class App_menu:
 
         self.frame_buttons = ctk.CTkFrame(main_window, fg_color="#FFF", width=screen_width, bg_color="#FFF")
         self.frame_buttons.pack(anchor="se", fill="both")
-        self.imagem_pao = Image.open("Gerenciamento_de_estoque_padaria/src/assets/pão.png")  
+        IMAGE1_PATH = os.path.join(BASE_DIR, '..', 'assets', 'pão.png')
+        self.imagem_pao = Image.open(IMAGE1_PATH)  
         self.imagem_pao = self.imagem_pao.resize((400, 400))
         self.imagem_tk = ImageTk.PhotoImage(self.imagem_pao)
         self.product_button = tk.Button(master= self.frame_buttons, image=self.imagem_tk, compound="center", width=650, height=800, fg="#FFF", command=self.call_read, background="#f6f6f6")
         self.product_button.pack(side="left")
-        self.imagem_func = Image.open("Gerenciamento_de_estoque_padaria/src/assets/func_padaria.png")
+        IMAGE2_PATH = os.path.join(BASE_DIR, '..', 'assets', 'func_padaria.png')
+        self.imagem_func = Image.open(IMAGE2_PATH)
         self.imagem_func = self.imagem_func.resize((400, 400))
         self.imagem_funcTk = ImageTk.PhotoImage(self.imagem_func)
         self.users_button = tk.Button(self.frame_buttons, image=self.imagem_funcTk, compound="center", width=650, height=800, fg="#FFF", command=self.call_users, background="#f6f6f6")
         self.users_button.pack(side="left")
-        self.imagem_vendas = Image.open("Gerenciamento_de_estoque_padaria/src/assets/vendas.png")
+        IMAGE3_PATH = os.path.join(BASE_DIR, '..', 'assets', 'vendas.png')
+        self.imagem_vendas = Image.open(IMAGE3_PATH)
         self.imagem_vendas = self.imagem_vendas.resize((400, 400))
         self.imagem_vendasTk = ImageTk.PhotoImage(self.imagem_vendas)
         self.vendas_button = tk.Button(self.frame_buttons, image=self.imagem_vendasTk, compound="center", width=650, height=800, fg="#FFF", command=self.call_vendas, background="#f6f6f6")
@@ -79,7 +82,6 @@ class App_menu:
         Read()
         
     def call_vendas(self):
+        from src import Vendas
         main_window.destroy()
         Vendas()
-         
-App_menu()

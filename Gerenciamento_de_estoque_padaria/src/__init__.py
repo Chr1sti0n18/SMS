@@ -5,3 +5,6 @@ from src.app.Update_products import Update
 from src.app.dbProducts import Database
 from src.app.App_menu import App_menu
 from src.app.manipulate_user import Manipulate
+from src.app.Vendas import Vendas
+from src.app.dbVendas import Data2
+from src.app.Cadastro_venda import GetProduto

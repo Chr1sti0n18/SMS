@@ -1,10 +1,12 @@
 import sqlite3
+import os
 
 class Data:
     
     def __init__(self, bd_login):
-        bd_login = r'Gerenciamento_de_estoque_padaria/src/app/dist/data/bd_users.db'
-        self.connect = sqlite3.connect(bd_login)
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        data_dir = os.path.join(base_dir, '..', 'app', 'dist', 'data', bd_login)
+        self.connect = sqlite3.connect(data_dir)
         self.cursor = self.connect.cursor()
         usuarios = """CREATE TABLE IF NOT EXISTS UsuariosPadaria(
                         ID INTEGER PRIMARY KEY AUTOINCREMENT,

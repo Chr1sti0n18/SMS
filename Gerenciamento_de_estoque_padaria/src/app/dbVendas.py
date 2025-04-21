@@ -1,11 +1,13 @@
 import sqlite3
 from datetime import date
+import os
 
-class Data:
+class Data2:
     def __init__(self, dbVendas):
         # Conectando ao banco de dados
-        dbVendas = r'Gerenciamento_de_estoque_padaria/src/app/dist/data/vendas.db'
-        self.con = sqlite3.connect(dbVendas)
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        DB_PATH = os.path.join(BASE_DIR, '..', 'app', 'dist', 'data', dbVendas)
+        self.con = sqlite3.connect(DB_PATH)
         self.cur = self.con.cursor()
         
         # Criando a tabela se ela não existir

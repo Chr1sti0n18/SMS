@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import END, ttk
 from tkinter import messagebox
 from PIL import Image
+import os
 
 class Manipulate: 
 
@@ -15,15 +16,18 @@ class Manipulate:
         screen_width = self.main_window.winfo_screenwidth()
         screen_height = self.main_window.winfo_screenheight()
         self.main_window.geometry(f"{screen_width}x{screen_height}+0+0")
-        self.main_window.iconbitmap('Gerenciamento_de_estoque_padaria/src/assets/logo_sem_fundo.ico')
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        ICON_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo_sem_fundo.ico')
+        LOGO_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo.png')
+        self.main_window.iconbitmap(ICON_PATH)
         self.main_window.state("zoomed")
 
         self.nome = ctk.StringVar()
         self.senha = ctk.StringVar()       
         self.nivel_acesso = ctk.StringVar()
 
-        logo = ctk.CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), 
-                            dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), size=(90, 90))
+        logo = ctk.CTkImage(light_image=Image.open(LOGO_PATH), 
+                            dark_image=Image.open(LOGO_PATH), size=(90, 90))
         
         # Criando frame principal
         self.inner_frame1 = ctk.CTkFrame(master= self.main_window, fg_color="#FFC07E", width=screen_width)
