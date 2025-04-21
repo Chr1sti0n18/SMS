@@ -1,10 +1,15 @@
 from customtkinter import *
 from customtkinter import CTkImage
 from PIL import Image
-from bd_login import Data
-from Products import *
+from src import Data
+from src import Read
 from tkinter import messagebox
-from App_menu import *
+import os
+
+# Caminho absoluto até o ícone
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ICON_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo_sem_fundo.ico')
+LOGO_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo.png')
 
 def Login():
     db = Data("bd_users.db")
@@ -24,6 +29,7 @@ def Login():
             funcao = rows[3]
 
             if funcao == "Admin":
+                from src import App_menu
                 main_window.destroy()
                 tela_menu = App_menu()
             
@@ -43,13 +49,13 @@ def LoginForm():
     main_window.title("Login")
     main_window.geometry("640x480+620+275")
     main_window._set_appearance_mode("system")
-    main_window.iconbitmap('Gerenciamento_de_estoque_padaria/src/assets/logo_sem_fundo.ico')
+    main_window.iconbitmap(ICON_PATH)
     main_window.resizable(False,False)   
     username = StringVar()
     password = StringVar()
     
-    logo = CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), 
-                        dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), size=(90, 90))
+    logo = CTkImage(light_image=Image.open(LOGO_PATH), 
+                        dark_image=Image.open(LOGO_PATH), size=(90, 90))
     
     # Montando a estrutura da Tela
     title_label = CTkLabel(main_window,text="Qui Pães",fg_color="#FFC07E",text_color="#554131",

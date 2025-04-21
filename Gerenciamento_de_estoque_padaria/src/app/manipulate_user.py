@@ -1,4 +1,3 @@
-from bd_login import Data
 import customtkinter as ctk
 import tkinter as tk
 from tkinter import END, ttk
@@ -8,6 +7,7 @@ from PIL import Image
 class Manipulate: 
 
     def __init__(self):
+        from src import Data
         self.db = Data("bd_users.db")
 
         self.main_window = tk.Tk()

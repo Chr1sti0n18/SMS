@@ -69,10 +69,12 @@ class App_menu:
        
     
     def call_users(self):
+        from src import Manipulate
         main_window.destroy()
         Manipulate()
 
     def call_read(self):
+        from src import Read
         main_window.destroy()
         Read()
         

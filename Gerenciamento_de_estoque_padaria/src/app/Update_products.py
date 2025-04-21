@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter import ttk, messagebox
 import customtkinter as ctk
 from PIL import Image
-from dbProducts import Database 
 
 class Update:
 
@@ -15,7 +14,9 @@ class Update:
         self.val=val
         self.lote=lote
         
-        self.db = Database ("products.db")
+        from src import Database
+
+        self.db = Database("products.db")
         self.main_window = Tk()
         self.main_window.title("Alteração de Produto")
         self.main_window.resizable(False, FALSE)
