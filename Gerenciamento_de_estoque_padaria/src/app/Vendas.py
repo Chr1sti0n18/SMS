@@ -6,7 +6,7 @@ from tkinter import messagebox
 from PIL import Image
 from Cadastro_venda import GetProduto
 
-class Manipulate: 
+class Vendas: 
 
     def __init__(self):
         
