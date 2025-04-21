@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk, messagebox
 import customtkinter as ctk
 from PIL import Image
-from dbProducts import Database 
+from .dbProducts import Database 
 #from Read_products import Read
 #from Delete_products import DeletarProduto
 
@@ -10,7 +10,7 @@ class Create:
 
     def __init__(self):
 
-        self.db = Database ("products.db")
+        self.db = Database("products.db")
         self.main_window = Tk()
         self.main_window.title("Cadastro de Produto")
         self.main_window.resizable(False, FALSE)
@@ -112,4 +112,3 @@ class Create:
                 self.main_window.destroy()
                 messagebox.showinfo("Erro", "Erro ao cadastrar produto: %s"%(e))
                 Create()
-    

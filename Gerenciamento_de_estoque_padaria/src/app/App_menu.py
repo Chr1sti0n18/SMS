@@ -1,8 +1,6 @@
 import tkinter as tk
 import customtkinter as ctk
 from PIL import Image, ImageTk
-from Products import *
-from manipulate_user import *
 
 class App_menu:
     def __init__(self):
@@ -38,9 +36,11 @@ class App_menu:
         main_window.mainloop()
     
     def call_users(self):
+        from src import Manipulate
         main_window.destroy()
         Manipulate()
 
     def call_read(self):
+        from src import Read
         main_window.destroy()
         Read()

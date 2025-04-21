@@ -3,14 +3,12 @@ import customtkinter as ctk
 from customtkinter import *
 from tkinter import *
 from PIL import Image
-from dbProducts import Database 
-from Create_products import Create
-from Update_products import Update
-import time
+from src import Create
+from .dbProducts import Database 
 
 class Read:
     def __init__(self):
-        self.db = Database ("products.db")
+        self.db = Database("products.db")
         # Criando a estrutura da janela
         self.main_window = Tk()
         self.main_window.title("Produtos")
@@ -98,27 +96,23 @@ class Read:
         self.displayAll()
     
         # Botões da aba
-        self.frame2 = ctk.CTkFrame(self.main_window)
+        self.frame2 = ctk.CTkFrame(self.main_window, width=self.largura)
         self.frame2.configure(fg_color='transparent')
-        self.frame2.pack(fill="both", expand = False, ipadx = 1280)
-        self.inner_frame3=ctk.CTkFrame(self.frame2)
-        self.inner_frame3.configure(fg_color='transparent')
-        self.inner_frame3.pack(side='left', fill='both')
-    
+        self.frame2.pack(fill="both")
         
-        self.update_button = ctk.CTkButton(self.inner_frame3, width=150, text="Alterar", command = self.update_produto ,fg_color='#554131',
+        self.update_button = ctk.CTkButton(self.frame2, width=150, text="Alterar", command = self.update_produto ,fg_color='#554131',
                                             font=ctk.CTkFont(family="Segoe UI", weight="bold"), text_color='#EBEBEB')
-        self.update_button.pack(side='right', padx=250)
+        self.update_button.place(rely=0.5, relx=0.2, anchor="center")
         
-        self.botao_deletar = ctk.CTkButton(self.inner_frame3, text="Deletar", 
+        self.botao_deletar = ctk.CTkButton(self.frame2, text="Deletar", 
                                            command=self.deletar_produto, fg_color="#554131", 
                                            text_color="#EBEBEB", width=150, font=ctk.CTkFont(family="Segoe UI", weight="bold"))
-        self.botao_deletar.pack(side='left', padx=250)
+        self.botao_deletar.place(rely=0.5, relx=0.8, anchor="center")
         
-        self.botao_cadastrar = ctk.CTkButton(self.inner_frame3, text="Cadastrar", 
+        self.botao_cadastrar = ctk.CTkButton(self.frame2, text="Cadastrar", 
                                            command=self.cadastar_produto, fg_color="#554131", 
                                            text_color="#EBEBEB", width=150, font=ctk.CTkFont(family="Segoe UI", weight="bold"))
-        self.botao_cadastrar.pack(padx=100)
+        self.botao_cadastrar.place(relx=0.5, rely=0.5, anchor="center")
     
         self.main_window.mainloop()
             
@@ -169,9 +163,10 @@ class Read:
             messagebox.showinfo("Cancelado", "Exclusão do produto cancelada.")
             
     def cadastar_produto(self):
-                      Create()
+        Create()
                    
     def update_produto(self):
+        from src import Update
         selected_item = self.table.selection()[0]   
         values = self.table.item(selected_item, "values")
         Update(values[0], values[1], values[5], values[3], values[2], values[4], values[6])          
