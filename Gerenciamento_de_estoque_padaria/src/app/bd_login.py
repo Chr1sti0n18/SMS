@@ -3,6 +3,7 @@ import sqlite3
 class Data:
     
     def __init__(self, bd_login):
+        bd_login = r'Gerenciamento_de_estoque_padaria/src/app/dist/data/bd_users.db'
         self.connect = sqlite3.connect(bd_login)
         self.cursor = self.connect.cursor()
         usuarios = """CREATE TABLE IF NOT EXISTS UsuariosPadaria(

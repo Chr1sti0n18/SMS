@@ -4,6 +4,7 @@ class Database:
     
     def __init__(self, bdProdutos):
         # Conectando ao banco de dados
+        bdProdutos = r'Gerenciamento_de_estoque_padaria/src/app/dist/data/products.db'
         self.con = sqlite3.connect(bdProdutos)
         self.cur = self.con.cursor()
         

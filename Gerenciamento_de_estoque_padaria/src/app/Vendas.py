@@ -79,15 +79,15 @@ class Manipulate:
         self.table["show"] = "headings"
         self.table.pack(fill="both")
 
-        self.table.bind("<ButtonRelease-1>", self.getData)
+        self.table.bind("<ButtonRelease-1>", self.pegar_dados)
         self.displayAll()
         self.main_window.mainloop()
 
 
-    def getData(self, event):
-        
-        selected_row = self.table.focus()            
-        data = self.table.item(selected_row)
+    def pegar_dados(self, event):
+        global selected_item 
+        selected_item = self.table.focus()
+        data = self.table.item(selected_item)
         global row
         row = data["values"]
         

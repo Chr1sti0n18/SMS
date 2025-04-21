@@ -1,10 +1,10 @@
 import sqlite3
 from datetime import date
 
-class DatabaseVendas:
-    
+class Data:
     def __init__(self, dbVendas):
         # Conectando ao banco de dados
+        dbVendas = r'Gerenciamento_de_estoque_padaria/src/app/dist/data/vendas.db'
         self.con = sqlite3.connect(dbVendas)
         self.cur = self.con.cursor()
         
@@ -15,8 +15,8 @@ class DatabaseVendas:
                          Produto TEXT NOT NULL,
                          Data DATE NOT NULL,
                          Quantidade INTEGER NOT NULL,
-                         PrecoTotal REAL NOT NULL,
-                    );"""
+                         PrecoTotal REAL NOT NULL
+                    );"""       
         self.cur.execute(vendas)
         self.con.commit()
 
@@ -33,7 +33,7 @@ class DatabaseVendas:
             ID = ID+1
             
         #Insere no banco de dados   
-        self.cur.execute("INSERT INTO VendasPadaria (ID, IDProduto, Produto, Data, Quantidade, PrecoTotal) VALUES (?, ?, ?, ?, ?)",
+        self.cur.execute("INSERT INTO VendasPadaria (ID, IDProduto, Produto, Data, Quantidade, PrecoTotal) VALUES (?, ?, ?, ?, ?, ?)",
                          (ID, IDProduto, Produto, Data, Quantidade, PrecoTotal))
         self.con.commit()
 
