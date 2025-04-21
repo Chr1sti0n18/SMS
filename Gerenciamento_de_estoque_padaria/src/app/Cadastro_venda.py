@@ -96,7 +96,7 @@ class GetProduto:
             self.form_valtotal = ctk.CTkEntry(self.inner_frame_form, height=40, width=435, corner_radius=15, border_color="#554131", justify = "center")
             self.form_valtotal.grid(row=6, column=1, padx=14, sticky=W, columnspan = 2)
             quantidade = self.form_qtd.get()
-            total = float(quantidade) * float(produto[3])
+            total = round(float(quantidade) * float(produto[3]), 2)
             self.form_valtotal.insert(END, total)
             self.form_valtotal.configure(state = "disabled")
             
@@ -104,7 +104,7 @@ class GetProduto:
             
             #Mudando posição do botão
             self.submit_button.pack_forget()
-            self.submit_button.configure(text = "Confirmar", width = 435, command = cadastrarVenda)
+            self.submit_button.configure(text = "Confirmar", width = 435, command = self.cadastrarVenda)
             self.submit_button.pack(pady = 25)
             self.qtd_label.pack_forget()
             self.form_qtd.pack_forget()
@@ -122,31 +122,31 @@ class GetProduto:
         self.form_qtd = ctk.CTkEntry(self.main_window, height=40, width=200, corner_radius=15, border_color="#554131")
         self.form_qtd.pack(anchor = N)
         
-        #Função para cadastrar venda
-        def cadastrarVenda():
-            id = self.form_id.get()
-            qtd = self.form_qtd.get()
-            nome = self.form_name.get()
-            total = self.form_valtotal.get()
-            if id == None or qtd == None or nome == None or total == None:
-                self.main_window.destroy()
-                messagebox.showinfo("Erro", "Não deixe nenhum campo vazio")
-                GetProduto()
-            else:
-                try:
-                        self.dbVendas.insert(id, nome, qtd, total)
-                        self.main_window.destroy()
-                        messagebox.showinfo("Sucesso!", "Venda cadastrada com sucesso!")
-                        GetProduto()
-                except Exception as e:
-                        self.main_window.destroy()
-                        messagebox.showinfo("Erro", "Erro ao cadastrar venda: %s"%(e))
-                        GetProduto()
-                        
         #Botão cadastrar
         self.submit_button = ctk.CTkButton(self.main_window, text="Cadastrar", height=40, width=100, corner_radius=15, command=segundaTela, 
-                                           fg_color="#554131", text_color="#EBEBEB", font=ctk.CTkFont(family="Segoe UI", weight="bold"))
+                                        fg_color="#554131", text_color="#EBEBEB", font=ctk.CTkFont(family="Segoe UI", weight="bold"))
         self.submit_button.pack(pady = 25)
         self.main_window.mainloop()
         
-GetProduto()
+    #Função para cadastrar venda
+    def cadastrarVenda(self):
+        id = self.form_id.get()
+        qtd = self.form_qtd.get()
+        nome = self.form_name.get()
+        total = self.form_valtotal.get()
+        if id == None or qtd == None or nome == None or total == None:
+            self.main_window.destroy()
+            messagebox.showinfo("Erro", "Não deixe nenhum campo vazio")
+            GetProduto()
+        else:
+            try:
+                    self.dbVendas.insert(id, nome, qtd, total)
+                    self.main_window.destroy()
+                    messagebox.showinfo("Sucesso!", "Venda cadastrada com sucesso!")
+                    GetProduto()
+            except Exception as e:
+                    self.main_window.destroy()
+                    messagebox.showinfo("Erro", "Erro ao cadastrar venda: %s"%(e))
+                                      
+            
+ 

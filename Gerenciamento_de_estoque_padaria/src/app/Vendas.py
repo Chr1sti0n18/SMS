@@ -1,9 +1,10 @@
-from bd_login import Data
+from dbVendas import Data
 import customtkinter as ctk
 import tkinter as tk
 from tkinter import END, ttk
 from tkinter import messagebox
 from PIL import Image
+from Cadastro_venda import GetProduto
 
 class Manipulate: 
 
@@ -19,8 +20,8 @@ class Manipulate:
         self.main_window.iconbitmap('Gerenciamento_de_estoque_padaria/src/assets/logo_sem_fundo.ico')
         self.main_window.state("zoomed")
         
-        logo = ctk.CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), 
-                            dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logo.png"), size=(90, 90))
+        logo = ctk.CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logotipo.png"), 
+                            dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logotipo.png"), size=(90,90))  
         
         # Criando frame principal
         self.inner_frame1 = ctk.CTkFrame(self.main_window, fg_color="#FFC07E")
@@ -40,13 +41,13 @@ class Manipulate:
         self.frame2.pack(padx=10, pady=25)
     
 
-        self.btnAdd = ctk.CTkButton(self.frame2, text="Iniciar", width=15, font=ctk.CTkFont("Segoe UI", 18, "bold"), text_color="white", fg_color="#16a085", command = self.inserir_funcionario)
+        self.btnAdd = ctk.CTkButton(self.frame2, text="Iniciar", width=15, font=ctk.CTkFont("Segoe UI", 18, "bold"), text_color="white", fg_color="#16a085", command = self.inserir_venda)
         self.btnAdd.pack(padx=10, pady=10)
     
         self.btnEdit = ctk.CTkButton(self.frame2, text="Atualizar", width=15, font=ctk.CTkFont("Segoe UI", 18, "bold"), text_color="white", fg_color="#2980b9", command = self.displayAll)
         self.btnEdit.pack(padx=10, pady=10)
 
-        self.btnDel = ctk.CTkButton(self.frame2, text="Deletar", width=15, font=ctk.CTkFont("Segoe UI", 18, "bold"), text_color="white", fg_color="crimson", command = self.del_funcionario)
+        self.btnDel = ctk.CTkButton(self.frame2, text="Deletar", width=15, font=ctk.CTkFont("Segoe UI", 18, "bold"), text_color="white", fg_color="crimson", command = self.del_venda)
         self.btnDel.pack(padx=10, pady=10)
 
 
@@ -96,20 +97,11 @@ class Manipulate:
         for row in self.db.fetch():
             self.table.insert("", END, values=row)
             
-    def inserir_funcionario(self):
-        
-        if (self.txt_Nome.get == "" or self.txt_Senha.get() == 0 or  self.txt_Nivel_acesso.get() == ""):
-            messagebox.showerror("Erro na entrada", "Por favor preencha todos os campos")
-        else:
-            self.db.insert(self.txt_Nome.get(), self.txt_Senha.get(), self.txt_Nivel_acesso.get())
-            messagebox.showinfo("Sucesso", "Usuário cadastrado")
-            self.clearAll()
-            self.displayAll()
+    def inserir_venda(self):
+        GetProduto()
 
-    def del_funcionario(self):
+    def del_venda(self):
         self.db.remove(row[0])
-        messagebox.showinfo("Sucesso", "Usuário Excluído")
+        messagebox.showinfo("Sucesso", "Venda Excluída")
         self.clearAll()
         self.displayAll()
-        
-Manipulate()
