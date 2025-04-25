@@ -47,7 +47,9 @@ def LoginForm():
     global main_window
     main_window = CTk()
     main_window.title("Login")
-    main_window.geometry("640x480+620+275")
+    altura = main_window.winfo_height
+    largura = main_window.winfo_width
+    main_window.geometry(f"640x480+75")
     main_window._set_appearance_mode("system")
     main_window.iconbitmap(ICON_PATH)
     main_window.resizable(False,False)   

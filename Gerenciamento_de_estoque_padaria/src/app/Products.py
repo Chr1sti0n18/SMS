@@ -5,6 +5,7 @@ from tkinter import *
 from PIL import Image
 from src import Create
 from .dbProducts import Database 
+import os
 
 class Read:
     def __init__(self):
@@ -15,15 +16,18 @@ class Read:
         self.altura = self.main_window.winfo_screenheight()
         self.largura = self.main_window.winfo_screenwidth() 
         self.main_window.state('zoomed')
-        self.main_window.iconbitmap('Gerenciamento_de_estoque_padaria/src/assets/logo_sem_fundo.ico')
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        ICON_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo_sem_fundo.ico')
+        self.main_window.iconbitmap(ICON_PATH)
         self.main_window.config(background="#EBEBEB")
         self.main_window.resizable(FALSE, FALSE)
 
         self.largura_logo =self.largura * 0.12
         self.altura_logo =self.altura * 0.15
         # Carregando a logo
-        logo = ctk.CTkImage(light_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logotipo.png"), 
-                            dark_image=Image.open("Gerenciamento_de_estoque_padaria/src/assets/logotipo.png"), size=(self.largura_logo, self.altura_logo))    
+        LOGO_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logotipo.png')
+        logo = ctk.CTkImage(light_image=Image.open(LOGO_PATH), 
+                            dark_image=Image.open(LOGO_PATH), size=(self.largura_logo, self.altura_logo))    
         
         # Criando head da aba
         self.inner_frame1 = ctk.CTkFrame(master= self.main_window, fg_color="#FFC07E", width=self.largura)
@@ -50,8 +54,9 @@ class Read:
         self.search_button.place(relx=0.27, rely=0.6)
         
         #Botão de refresh
-        self.refresh_icon=ctk.CTkImage(light_image = Image.open("Gerenciamento_de_estoque_padaria/src/assets/refresh.png"), 
-                                        dark_image = Image.open("Gerenciamento_de_estoque_padaria/src/assets/refresh.png"), size=(25, 25))
+        REFRESH_PATH = os.path.join(BASE_DIR, '..', 'assets', 'refresh.png')
+        self.refresh_icon=ctk.CTkImage(light_image = Image.open(REFRESH_PATH), 
+                                        dark_image = Image.open(REFRESH_PATH), size=(25, 25))
         self.refresh_button=ctk.CTkButton(self.inner_frame2, width = self.largura - (self.largura * 0.98), height= 35, text = '',image=self.refresh_icon, fg_color='transparent',
                                             font=ctk.CTkFont(family="Segoe UI", weight="bold"), text_color='#EBEBEB', hover_color= "#FFF", 
                                             command=self.displayAll)
