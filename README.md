@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # SMS
 Projeto da faculdade
 =======
@@ -21,4 +20,4 @@ Com a utilização destes códigos houve uma melhora no controle de estoque da p
   Para fazer isto basta abrir o arquivo "manipulate_user.py", e se necessário cadastrar um usuário qualquer apenas para conseguir realizar o login. Tendo um usuário cadastrado já será possível fazer login, então abra o arquivo "login.py" que estará na mesma pasta do "manipulate_user". Faça login e você vai estar na tela de menu. Lá poderá escolher entre ver usuários e produtos nas duas opções é possível cadastrar, editar, excluir ou ver todos os cadastros disponíveis.
 
 # Pronto agora pode usufruir do código como quiser!!
->>>>>>> deaddd99c0228721621e68944746352c05ab2db9
+Para rodar o código atualmente entre na pasta "Gerenciamento_de_estoque_padaria" e rode o seguinte código no terminal: "python -m src.app.login"
