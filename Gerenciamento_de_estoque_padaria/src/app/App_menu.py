@@ -13,6 +13,7 @@ class App_menu:
         ICON_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo_sem_fundo.ico')
         main_window.iconbitmap(ICON_PATH)
         screen_width = main_window.winfo_width()
+        screen_height = main_window.winfo_height()
         self.frame1 = ctk.CTkFrame(main_window, fg_color="#FFF")
         self.frame1.pack(side="top", fill="y", expand = False, ipadx = 1280)
         main_window.resizable(False, False)
@@ -55,16 +56,16 @@ class App_menu:
                                  fg_color="#FFC07E", height=450, width=screen_width)
         self.bottom.pack()
         
-        self.produtos = ctk.CTkLabel(self.frame_buttons, text="Gerenciar Estoque", font=("Segoe Script", 52, "bold"), 
-                                 fg_color="#f6f6f6", text_color="#554131", height=120, width=screen_width*0.30)
+        self.produtos = ctk.CTkLabel(self.frame_buttons, text="Gerenciar Estoque", font=("Segoe Script", 38, "bold"), 
+                                 fg_color="#f6f6f6", text_color="#554131", height=screen_height*0.1, width=screen_width*0.15)
         self.produtos.place(relx=0.16, rely=0.85, anchor="center")
         
-        self.users = ctk.CTkLabel(self.frame_buttons, text="Gerenciar Usuários" , font=("Segoe Script", 52, "bold"), 
-                                  fg_color="#f6f6f6", text_color="#554131", height=120, width=screen_width*0.30)
+        self.users = ctk.CTkLabel(self.frame_buttons, text="Gerenciar Usuários" , font=("Segoe Script", 38, "bold"), 
+                                  fg_color="#f6f6f6", text_color="#554131", height=120, width=screen_width*0.15)
         self.users.place(relx=0.5, rely=0.85, anchor="center")
         
-        self.vendas = ctk.CTkLabel(self.frame_buttons, text="Gerenciar Vendas" , font=("Segoe Script", 52, "bold"), 
-                                 fg_color="#f6f6f6", text_color="#554131", height=120, width=screen_width*0.30)
+        self.vendas = ctk.CTkLabel(self.frame_buttons, text="Gerenciar Vendas" , font=("Segoe Script", 38, "bold"), 
+                                 fg_color="#f6f6f6", text_color="#554131", height=120, width=screen_width*0.15)
         self.vendas.place(relx=0.84, rely=0.85, anchor="center")
         
         main_window.mainloop()
