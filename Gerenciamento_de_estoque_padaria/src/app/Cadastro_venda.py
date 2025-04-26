@@ -1,8 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import customtkinter as ctk
-#from Read_products import Read
-#from Delete_products import DeletarProduto
+import os
 
 class GetProduto:
 
@@ -26,8 +25,9 @@ class GetProduto:
         self.x = (self.screen_width // 2) - (self.width // 2)
         self.y = (self.screen_height // 2) - (self.height // 2)
         self.main_window.geometry(f"{self.width}x{self.height}+{self.x}+{self.y}")
-        
-        self.main_window.iconbitmap('Gerenciamento_de_estoque_padaria/src/assets/logo_sem_fundo.ico')
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        ICON_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo_sem_fundo.ico')
+        self.main_window.iconbitmap(ICON_PATH)
         self.main_window.config(background='#EBEBEB') 
         
         # Criando frame principal

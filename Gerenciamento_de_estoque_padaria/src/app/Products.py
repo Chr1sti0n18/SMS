@@ -188,6 +188,4 @@ class Read:
         from src import App_menu
         self.main_window.destroy()
         App_menu()
-            
         
-Read()

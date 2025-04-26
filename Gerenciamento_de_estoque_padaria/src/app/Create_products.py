@@ -20,7 +20,7 @@ class Create:
         self.height=700
         self.x = (self.screen_width // 2) - (self.width // 2)
         self.y = (self.screen_height // 2) - (self.height // 2)
-        self.main_window.geometry(f"{self.width}x{self.height}+{self.x}+{self.y}")
+        self.main_window.geometry(f"800x600+{self.x}+{self.y}")
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
         ICON_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo_sem_fundo.ico')
         self.main_window.iconbitmap(ICON_PATH)
