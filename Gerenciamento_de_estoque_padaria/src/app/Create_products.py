@@ -18,12 +18,11 @@ class Create:
         self.screen_height = self.main_window.winfo_screenheight()
         altura = self.main_window.winfo_screenheight()
         largura = self.main_window.winfo_screenwidth()
-        largura_janela = largura * 0.33
-        altura_janela = altura * 0.44
-        #1920x1080 = 640/1920 = 0.33, 480/1080 = 0.44 
+        largura_janela = 640
+        altura_janela = 480
         pos_x = (largura - largura_janela) // 2
         pos_y = (altura - altura_janela) // 2
-        self.main_window.geometry(f"{int(largura_janela)}x{int(altura_janela)}+{int(pos_x)}+{int(pos_y)}")
+        self.main_window.geometry(f"{largura_janela}x{altura_janela}+{pos_x}+{pos_y}")
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
         ICON_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo_sem_fundo.ico')
         self.main_window.iconbitmap(ICON_PATH)
@@ -37,52 +36,53 @@ class Create:
 
          # Texto da frame principal
         self.head = ctk.CTkLabel(self.inner_frame1, text="Cadastro de produtos", font=ctk.CTkFont(family="Segoe Script", size=35, weight="bold"), 
-                                 fg_color="#FFC07E", text_color="#554131",height = altura_janela * 0.15625, anchor="center")
+                                 fg_color="#FFC07E", text_color="#554131",height=75, anchor="center")
         
         self.head.pack(fill="both") 
 
         #Criando o formulário de criação de produto
         self.name_label=ctk.CTkLabel(self.main_window, text="Produto", font=ctk.CTkFont("Segoe UI", 15, "bold"))
         self.name_label.pack(anchor=S, pady = 8)
-        self.form_name = ctk.CTkEntry(self.main_window, height = altura_janela*0.083, width=largura_janela*0.3125, corner_radius=15, border_color="#554131")
+        self.form_name = ctk.CTkEntry(self.main_window, height=40, width=200, corner_radius=15, border_color="#554131")
         self.form_name.pack(anchor=N)
+       
         self.frame_form = ctk.CTkFrame(self.main_window, fg_color='#EBEBEB')
         self.frame_form.pack(fill="both")
         self.inner_frame_form = ctk.CTkFrame(self.frame_form, fg_color='transparent')
         
         self.inner_frame_form.pack()
-        self.form_codigo = ctk.CTkEntry(self.inner_frame_form, height = altura_janela*0.083, width = largura_janela*0.3125, corner_radius=15, border_color="#554131")
+        self.form_codigo = ctk.CTkEntry(self.inner_frame_form, height=40, width=200, corner_radius=15, border_color="#554131")
         self.form_codigo.grid(row=1, column=1, padx=15, sticky=N)
         self.ID_label=ctk.CTkLabel(self.inner_frame_form, text="ID", font=ctk.CTkFont("Segoe UI", 15, "bold"))
         self.ID_label.grid(row=0, column=1, sticky=S)
         
         self.category_label=ctk.CTkLabel(self.inner_frame_form, text="Categoria", font=ctk.CTkFont("Segoe UI", 15, "bold"))
         self.category_label.grid(row=0, column=2)
-        self.form_category = ctk.CTkEntry(self.inner_frame_form, height = altura_janela*0.083, width = largura_janela*0.3125, corner_radius=15, border_color="#554131")
+        self.form_category = ctk.CTkEntry(self.inner_frame_form, height=40, width=200, corner_radius=15, border_color="#554131")
         self.form_category.grid(row=1, column=2, padx=15, sticky=N)
         
         self.price_label=ctk.CTkLabel(self.inner_frame_form, text="Preço", font=ctk.CTkFont("Segoe UI", 15, "bold"))
         self.price_label.grid(row=3, column=1)
-        self.form_price = ctk.CTkEntry(self.inner_frame_form, height = altura_janela*0.083, width = largura_janela*0.3125, corner_radius=15, border_color="#554131")
+        self.form_price = ctk.CTkEntry(self.inner_frame_form, height=40, width=200, corner_radius=15, border_color="#554131")
         self.form_price.grid(row=4, column=1, padx=15, sticky=E)
         
         self.qtd_label=ctk.CTkLabel(self.inner_frame_form, text="Quantidade", font=ctk.CTkFont("Segoe UI", 15, "bold"))
         self.qtd_label.grid(row=3, column=2)
-        self.form_qtd = ctk.CTkEntry(self.inner_frame_form, height = altura_janela*0.083, width = largura_janela*0.3125, corner_radius=15, border_color="#554131")
+        self.form_qtd = ctk.CTkEntry(self.inner_frame_form, height=40, width=200, corner_radius=15, border_color="#554131")
         self.form_qtd.grid(row=4, column=2, padx=15, sticky=W)
         
         self.val_label=ctk.CTkLabel(self.inner_frame_form, text="Validade", font=ctk.CTkFont("Segoe UI", 15, "bold"))
         self.val_label.grid(row=5, column=1)
-        self.form_val = ctk.CTkEntry(self.inner_frame_form, height = altura_janela*0.083, width = largura_janela*0.3125, corner_radius=15, border_color="#554131")
+        self.form_val = ctk.CTkEntry(self.inner_frame_form, height=40, width=200, corner_radius=15, border_color="#554131")
         self.form_val.grid(row=6, column=1, padx=15, sticky=E)
 
         self.lote_label=ctk.CTkLabel(self.inner_frame_form, text="Lote", font=ctk.CTkFont("Segoe UI", 15, "bold"))
         self.lote_label.grid(row=5, column=2)
-        self.form_lote = ctk.CTkEntry(self.inner_frame_form, height = altura_janela*0.083, width = largura_janela*0.3125, corner_radius=15, border_color="#554131")
+        self.form_lote = ctk.CTkEntry(self.inner_frame_form, height=40, width=200, corner_radius=15, border_color="#554131")
         self.form_lote.grid(row=6, column=2, padx=14, sticky=W)
         
         #Botão cadastrar
-        self.submit_button = ctk.CTkButton(self.inner_frame_form, text="Cadastrar", height = altura_janela*0.083, width = largura_janela*0.3125, corner_radius=15, command=self.createProduct, 
+        self.submit_button = ctk.CTkButton(self.inner_frame_form, text="Cadastrar", height=40, width=200, corner_radius=15, command=self.createProduct, 
                                            fg_color="#554131", text_color="#EBEBEB", font=ctk.CTkFont(family="Segoe UI", weight="bold"))
         self.submit_button.grid(row=7, column=1, rowspan=2, columnspan=3, pady=30, padx=45)
         
