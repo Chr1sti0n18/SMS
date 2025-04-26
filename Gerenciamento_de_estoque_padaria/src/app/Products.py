@@ -189,5 +189,3 @@ class Read:
         self.main_window.destroy()
         App_menu()
             
-        
-Read()
