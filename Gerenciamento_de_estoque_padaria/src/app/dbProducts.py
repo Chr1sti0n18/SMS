@@ -35,7 +35,7 @@ class Database:
             self.cur.execute("SELECT * FROM ProdutosPadaria")
             rows = self.cur.fetchall()
             return rows
-        self.cur.execute("SELECT * FROM ProdutosPadaria WHERE Categoria = ?", (filter,))
+        self.cur.execute("SELECT * FROM ProdutosPadaria WHERE Categoria like ?", (f"%{filter}%",))
         rows = self.cur.fetchall()
         return rows
     
@@ -47,9 +47,9 @@ class Database:
     
     # Obtendo um produto por nome
     def search(self, search):
-        self.cur.execute("SELECT * FROM ProdutosPadaria WHERE Produto = ?", (search,))
-        rows = self.cur.fetchall()
-        return rows
+            self.cur.execute("SELECT * FROM ProdutosPadaria WHERE Produto LIKE ?", (f"%{search}%",))
+            rows = self.cur.fetchall()
+            return rows
     
     # Removendo um produto por ID
     def remove(self, ID):

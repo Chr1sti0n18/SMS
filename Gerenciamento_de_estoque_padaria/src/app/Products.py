@@ -144,10 +144,10 @@ class Read:
         search = self.search_box.get().upper()
         self.table.delete(*self.table.get_children())
         if search == '':
-            for row in self.db.fetch('Todos'):
+            self.displayAll()
+        else:
+            for row in self.db.search(search):
                 self.table.insert("", END, values = row)
-        for row in self.db.search(search):
-            self.table.insert("", END, values = row)
 
     def deletar_produto(self):
         # Obtém o item selecionado

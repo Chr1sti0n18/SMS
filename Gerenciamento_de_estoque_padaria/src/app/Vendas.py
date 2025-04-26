@@ -20,10 +20,13 @@ class Vendas:
         ICON_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo_sem_fundo.ico')
         self.main_window.iconbitmap(ICON_PATH)
         self.main_window.state("zoomed")
+        self.largura_logo =screen_width * 0.12
+        self.altura_logo =screen_height * 0.15
+        BACK_ARROW_PATH = os.path.join(BASE_DIR, '..', 'assets', 'back_arrow.png')
         
         LOGO_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logotipo.png')
         logo = ctk.CTkImage(light_image=Image.open(LOGO_PATH), 
-                            dark_image=Image.open(LOGO_PATH), size=(90,90))  
+                            dark_image=Image.open(LOGO_PATH), size=(self.largura_logo, self.altura_logo))
         
         # Criando frame principal
         self.inner_frame1 = ctk.CTkFrame(self.main_window, fg_color="#FFC07E")
@@ -31,11 +34,18 @@ class Vendas:
         self.frame1 = ctk.CTkFrame(self.main_window, fg_color="transparent")
         self.frame1.pack(side="top", fill="y", expand = False, ipadx = 1280, ipady=30)
 
-        self.head = ctk.CTkLabel(self.inner_frame1, text="Cadastro de vendas", font=("Segoe Script", 52, "bold"), 
-                                 fg_color="#FFC07E", text_color="#554131",height=90, width=screen_width, anchor="center")
+        self.head = ctk.CTkLabel(self.inner_frame1, image = logo, compound= "left", text="Cadastro de Vendas", font=("Segoe Script", 50, "bold"), 
+                                 fg_color="#FFC07E", text_color="#554131",height=screen_height * 0.1, anchor="center")
         
-        self.image_label = ctk.CTkLabel(self.inner_frame1, image=logo, text="")
-        self.image_label.pack(side="left", anchor="w")  # Sem padding, a imagem fica na extrema esquerda
+        
+        back_arrow = ctk.CTkImage(light_image=Image.open(BACK_ARROW_PATH), 
+                            dark_image=Image.open(BACK_ARROW_PATH), size=(130, 130))
+        self.back_button_label = ctk.CTkButton(self.inner_frame1, text="", image=back_arrow, command = self.back_menu, fg_color="transparent", hover=False)
+        self.back_button_label.pack(side="left")
+        
+        # self.image_label = ctk.CTkLabel(text="", master=self.inner_frame1, image=logo)
+        # self.image_label.pack(side="left")  # Sem padding, a imagem fica na extrema esquerda
+        # self.head.place(relx=0.5, rely=0.5, anchor="center")
         
         self.head.pack(fill="both", pady=40)
    
@@ -108,3 +118,8 @@ class Vendas:
         messagebox.showinfo("Sucesso", "Venda Excluída")
         self.clearAll()
         self.displayAll()
+        
+    def back_menu(self):
+        from src import App_menu
+        self.main_window.destroy()
+        App_menu()

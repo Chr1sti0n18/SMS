@@ -19,6 +19,7 @@ class Manipulate:
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
         ICON_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo_sem_fundo.ico')
         LOGO_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo.png')
+        BACK_ARROW_PATH = os.path.join(BASE_DIR, '..', 'assets', 'back_arrow.png')
         self.main_window.iconbitmap(ICON_PATH)
         self.main_window.state("zoomed")
 
@@ -29,17 +30,23 @@ class Manipulate:
         logo = ctk.CTkImage(light_image=Image.open(LOGO_PATH), 
                             dark_image=Image.open(LOGO_PATH), size=(90, 90))
         
+        back_arrow = ctk.CTkImage(light_image=Image.open(BACK_ARROW_PATH), 
+                            dark_image=Image.open(BACK_ARROW_PATH), size=(130, 130))
+        
         # Criando frame principal
         self.inner_frame1 = ctk.CTkFrame(master= self.main_window, fg_color="#FFC07E", width=screen_width)
         self.inner_frame1.pack(side="top", fill="x") 
         self.frame1 = ctk.CTkFrame(self.main_window, fg_color="transparent")
         self.frame1.pack(side="top", fill="y", expand = False, ipadx = 1280, ipady=30)
 
-        self.head = ctk.CTkLabel(self.inner_frame1, text="Cadastro de usuários", font=("Segoe Script", 50, "bold"), 
+        self.head = ctk.CTkLabel(self.inner_frame1, image = logo, compound= "left", text="Cadastro de Usuários", font=("Segoe Script", 50, "bold"), 
                                  fg_color="#FFC07E", text_color="#554131",height=screen_height * 0.1, anchor="center")
         
-        self.image_label = ctk.CTkLabel(self.inner_frame1, image=logo, text="")
-        self.image_label.pack(side="left")  # Sem padding, a imagem fica na extrema esquerda
+        
+        # self.back_button_label = ctk.CTkLabel(self.inner_frame1, image=back_arrow, text="")
+        self.back_button_label = ctk.CTkButton(self.inner_frame1, text="", image=back_arrow, command = self.back_menu, fg_color="transparent", hover=False)
+        self.back_button_label.pack(side="left")  # Sem padding, a imagem fica na extrema esquerda
+        # self.back_button_label.bind("Button-1", self.back_menu)
         
         self.head.place(relx=0.5, rely=0.5, anchor="center")
 
@@ -164,3 +171,9 @@ class Manipulate:
         messagebox.showinfo("Sucesso", "Usuário Excluído")
         self.clearAll()
         self.displayAll()
+        
+    def back_menu(self):
+        from src import App_menu
+        self.main_window.destroy()
+        App_menu()
+        
