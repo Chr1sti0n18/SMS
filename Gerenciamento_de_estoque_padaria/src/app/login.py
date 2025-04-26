@@ -18,9 +18,13 @@ class Login():
         global password
         self.main_window = CTk()
         self.main_window.title("Login")
-        altura = self.main_window.winfo_height
-        largura = self.main_window.winfo_width
-        self.main_window.geometry(f"640x480+75")
+        altura = self.main_window.winfo_screenheight()
+        largura = self.main_window.winfo_screenwidth()
+        largura_janela = 640
+        altura_janela = 480
+        pos_x = (largura - largura_janela) // 2
+        pos_y = (altura - altura_janela) // 2
+        self.main_window.geometry(f"{largura_janela}x{altura_janela}+{pos_x}+{pos_y}")
         self.main_window._set_appearance_mode("system")
         self.main_window.iconbitmap(ICON_PATH)
         self.main_window.resizable(False,False)   
