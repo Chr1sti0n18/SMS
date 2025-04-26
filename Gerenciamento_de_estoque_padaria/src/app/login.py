@@ -14,6 +14,12 @@ LOGO_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo.png')
 class Login():
     def __init__(self):
         # Definindo váriavel global para a janela principal
+        self.db = Data("bd_users.db")
+        rows = self.db.fetch()
+        if not rows:
+            from src import Manipulate
+            Manipulate()
+            return 0
         global username
         global password
         self.main_window = CTk()
@@ -61,16 +67,13 @@ class Login():
         self.btn_submit.invoke()
 
     def entering(self):
-        
-        db = Data("bd_users.db")
-
         uname = username.get()
         pwd = password.get()
 
         if uname == "" or pwd == "":
             messagebox.showerror("Erro", "Ainda há campo(s) vazio(s)!")
         else:
-            rows = db.logar(uname, pwd)
+            rows = self.db.logar(uname, pwd)
             print(rows)
             if rows:
 

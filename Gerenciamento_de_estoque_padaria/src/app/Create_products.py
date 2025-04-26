@@ -16,11 +16,13 @@ class Create:
         #Tamanho da janela
         self.screen_width = self.main_window.winfo_screenwidth()
         self.screen_height = self.main_window.winfo_screenheight()
-        self.width=900
-        self.height=700
-        self.x = (self.screen_width // 2) - (self.width // 2)
-        self.y = (self.screen_height // 2) - (self.height // 2)
-        self.main_window.geometry(f"800x600+{self.x}+{self.y}")
+        altura = self.main_window.winfo_screenheight()
+        largura = self.main_window.winfo_screenwidth()
+        largura_janela = 640
+        altura_janela = 480
+        pos_x = (largura - largura_janela) // 2
+        pos_y = (altura - altura_janela) // 2
+        self.main_window.geometry(f"{largura_janela}x{altura_janela}+{pos_x}+{pos_y}")
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
         ICON_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo_sem_fundo.ico')
         self.main_window.iconbitmap(ICON_PATH)
