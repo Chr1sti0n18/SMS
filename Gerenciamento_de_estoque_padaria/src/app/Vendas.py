@@ -24,13 +24,13 @@ class Vendas:
         self.altura_logo =screen_height * 0.15
         BACK_ARROW_PATH = os.path.join(BASE_DIR, '..', 'assets', 'back_arrow.png')
         
-        LOGO_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logotipo.png')
+        LOGO_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo.png')
         logo = ctk.CTkImage(light_image=Image.open(LOGO_PATH), 
-                            dark_image=Image.open(LOGO_PATH), size=(self.largura_logo, self.altura_logo))
+                            dark_image=Image.open(LOGO_PATH), size=(90,90))
         
         # Criando frame principal
-        self.inner_frame1 = ctk.CTkFrame(self.main_window, fg_color="#FFC07E")
-        self.inner_frame1.pack(fill="y", expand = False, side="top", ipadx=1280) 
+        self.inner_frame1 = ctk.CTkFrame(self.main_window, fg_color="#FFC07E", width=screen_width)
+        self.inner_frame1.pack(side="top", fill="x") 
         self.frame1 = ctk.CTkFrame(self.main_window, fg_color="transparent")
         self.frame1.pack(side="top", fill="y", expand = False, ipadx = 1280, ipady=30)
 
@@ -47,7 +47,7 @@ class Vendas:
         # self.image_label.pack(side="left")  # Sem padding, a imagem fica na extrema esquerda
         # self.head.place(relx=0.5, rely=0.5, anchor="center")
         
-        self.head.pack(fill="both", pady=40)
+        self.head.place(relx=0.5,rely=0.5,anchor="center")
    
         self.frame2 = ctk.CTkFrame(self.frame1, fg_color="transparent")
         self.frame2.pack(padx=10, pady=25)
