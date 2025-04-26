@@ -18,6 +18,7 @@ class Read:
         self.main_window.state('zoomed')
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
         ICON_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo_sem_fundo.ico')
+        BACK_ARROW_PATH = os.path.join(BASE_DIR, '..', 'assets', 'back_arrow.png')
         self.main_window.iconbitmap(ICON_PATH)
         self.main_window.config(background="#EBEBEB")
         self.main_window.resizable(FALSE, FALSE)
@@ -25,9 +26,9 @@ class Read:
         self.largura_logo =self.largura * 0.12
         self.altura_logo =self.altura * 0.15
         # Carregando a logo
-        LOGO_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logotipo.png')
+        LOGO_PATH = os.path.join(BASE_DIR, '..', 'assets', 'logo.png')
         logo = ctk.CTkImage(light_image=Image.open(LOGO_PATH), 
-                            dark_image=Image.open(LOGO_PATH), size=(self.largura_logo, self.altura_logo))    
+                            dark_image=Image.open(LOGO_PATH), size=(90, 90))    
         
         # Criando head da aba
         self.inner_frame1 = ctk.CTkFrame(master= self.main_window, fg_color="#FFC07E", width=self.largura)
@@ -35,13 +36,20 @@ class Read:
 
         self.altura_label = self.altura * 0.1
          # Texto do head da aba
-        self.head = ctk.CTkLabel(self.inner_frame1, text="Produtos", font=CTkFont(family="Segoe Script", size=50, weight="bold"), 
-                                 fg_color="#FFC07E", text_color="#554131",height=self.altura_label)
+        self.head = ctk.CTkLabel(self.inner_frame1, image = logo, compound= "left", text="Produtos", font=("Segoe Script", 50, "bold"), 
+                                 fg_color="#FFC07E", text_color="#554131",height=self.largura * 0.1, anchor="center")
+        
+        back_arrow = ctk.CTkImage(light_image=Image.open(BACK_ARROW_PATH), 
+                            dark_image=Image.open(BACK_ARROW_PATH), size=(130, 130))
         
         # Posicionando logo no head da aba
-        self.image_label = ctk.CTkLabel(text="", master=self.inner_frame1, image=logo)
-        self.image_label.pack(side="left")  # Sem padding, a imagem fica na extrema esquerda
+        # self.image_label = ctk.CTkLabel(text="", master=self.inner_frame1, image=logo)
+        # self.image_label.pack(side="left")  # Sem padding, a imagem fica na extrema esquerda
+        self.back_button_label = ctk.CTkButton(self.inner_frame1, text="", image=back_arrow, command = self.back_menu, fg_color="transparent", hover=False)
+        self.back_button_label.pack(side="left")
+        
         self.head.place(relx=0.5, rely=0.5, anchor="center")
+        
         
         # Criando barra de busca
         self.inner_frame2 = ctk.CTkFrame(self.main_window, width=self.largura)
@@ -175,5 +183,11 @@ class Read:
         selected_item = self.table.selection()[0]   
         values = self.table.item(selected_item, "values")
         Update(values[0], values[1], values[5], values[3], values[2], values[4], values[6])          
+    
+    def back_menu(self):
+        from src import App_menu
+        self.main_window.destroy()
+        App_menu()
+            
         
-        
+Read()
