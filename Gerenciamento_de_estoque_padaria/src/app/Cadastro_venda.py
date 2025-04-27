@@ -9,8 +9,8 @@ class GetProduto:
         #Conexões bancos de dados
         from src import Database
         self.db = Database ("products.db")
-        from src import Data
-        self.dbVendas =  Data ("vendas.db")
+        from src import Data2
+        self.dbVendas =  Data2 ("vendas.db")
         
         #Criação janela principal
         self.main_window = Tk()
@@ -45,22 +45,24 @@ class GetProduto:
         #Expansão de tela, elementos na primeira tela estão abaixo da função
         def segundaTela():
             #Testes erros
+            produto = self.db.searchID(self.form_id.get())
             if(self.form_id.get() == ""):
                     self.main_window.destroy()
                     return messagebox.showinfo("Erro", "Campo de ID vazio!") & self.main_window.mainloop()
-            if(self.form_qtd.get() == "" or int(self.form_qtd.get()) < 1):
+            if(self.form_qtd.get() == "" or int(self.form_qtd.get()) < 1 or self.form_qtd.get() == None):
                     self.main_window.destroy()
                     return messagebox.showinfo("Erro", "Quantidade inválida!") & self.main_window.mainloop()
-                
+            if(int(self.form_qtd.get()) > int(produto[2])):
+                    self.main_window.destroy()
+                    return messagebox.showinfo("Erro", "Quantidade maior que a disponível em estoque!") & self.main_window.mainloop()    
             #Dados do produto
             try:
-                produto = self.db.searchID(self.form_id.get())
                 if(produto == None):
                      return  messagebox.showinfo("Erro", "Produto não encontrado")
             except Exception as e:
                 self.main_window.destroy()
                 return  messagebox.showinfo("Erro", "Erro ao cadastrar venda: %s"%(e))
-                
+    
             self.head.configure(text = "Confirmação")
             
             #Alteração tamanho da janela
