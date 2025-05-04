@@ -111,13 +111,12 @@ class Vendas:
             
     def inserir_venda(self):
         from src import GetProduto
-        GetProduto()
+        GetProduto(self.displayAll)
 
     def del_venda(self):
         self.db.remove(row[0])
-        messagebox.showinfo("Sucesso", "Venda Excluída")
-        self.clearAll()
         self.displayAll()
+        messagebox.showinfo("Sucesso", "Venda Excluída")
         
     def back_menu(self):
         from src import App_menu
