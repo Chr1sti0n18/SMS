@@ -58,7 +58,7 @@ class GetProduto:
             if(int(self.form_qtd.get()) > int(produto[2])):
                     main_window.destroy()
                     return messagebox.showinfo("Erro", "Quantidade maior que a disponível em estoque!") & self.main_window.mainloop()    
-            self.qtdProd = int(produto[2])
+                
             #Dados do produto
             try:
                 if(produto == None):
@@ -101,6 +101,10 @@ class GetProduto:
             self.valtotal_label.grid(row=5, column=1, columnspan = 2)
             self.form_valtotal = ctk.CTkEntry(self.inner_frame_form, height=40, width=435, corner_radius=15, border_color="#554131", justify = "center")
             self.form_valtotal.grid(row=6, column=1, padx=14, sticky=W, columnspan = 2)
+            
+            self.saveQtd = ctk.CTkEntry(self.inner_frame_form, height=40, width=435, corner_radius=15, border_color="#554131", justify = "center")
+            self.saveQtd.insert(END, produto[2])
+            
             quantidade = self.form_qtd.get()
             total = round(float(quantidade) * float(produto[3]), 2)
             self.form_valtotal.insert(END, total)
@@ -110,7 +114,7 @@ class GetProduto:
             
             #Mudando posição do botão
             self.submit_button.pack_forget()
-            self.submit_button.configure(text = "Confirmar", width = 435, command = self.cadastrarVenda(self.qtdProd))
+            self.submit_button.configure(text = "Confirmar", width = 435, command = self.cadastrarVenda)
             self.submit_button.pack(pady = 25)
             self.qtd_label.pack_forget()
             self.form_qtd.pack_forget()
@@ -135,11 +139,13 @@ class GetProduto:
         main_window.mainloop()
         
     #Função para cadastrar venda
-    def cadastrarVenda(self, qtd2):
+    def cadastrarVenda(self):
         id = self.form_id.get()
         qtd = self.form_qtd.get()
         nome = self.form_name.get()
         total = self.form_valtotal.get()
+        qtdProduto = int(self.saveQtd.get()) - int(qtd)
+
         if id == None or qtd == None or nome == None or total == None:
             main_window.destroy()
             messagebox.showinfo("Erro", "Não deixe nenhum campo vazio")
@@ -151,8 +157,8 @@ class GetProduto:
                 messagebox.showinfo("Sucesso!", "Venda cadastrada com sucesso!")
                 if self.callback:
                     self.callback()
-                self.qtdProd = int(qtd2)-int(qtd)
-                self.db.reduceQtd(id,self.qtdProd)
+
+                self.db.reduceQtd(id,qtdProduto)
                 GetProduto()
             except Exception as e:
                     main_window.destroy()
