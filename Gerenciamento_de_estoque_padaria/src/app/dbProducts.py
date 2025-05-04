@@ -3,7 +3,7 @@ import os
 
 class Database:
     
-    def __init__(self, bdProdutos):
+    def __init__(self, bdProdutos=None):
         # Conectando ao banco de dados
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
         DB_PATH = os.path.join(BASE_DIR, '..', 'app', 'dist', 'data', bdProdutos)
@@ -62,6 +62,12 @@ class Database:
                             SET Produto = ?, Quantidade = ?, Preco = ?, Validade = ?, Categoria = ?, Lote = ? 
                             WHERE ID = ?""",
                          (Produto, Quantidade, Preco, Validade, Categoria, Lote, ID))
+        self.con.commit()
+
+    def reduceQtd(self, id, minusQtd):
+        self.cur.execute("""UPDATE ProdutosPadaria 
+                            SET Quantidade = ?
+                            WHERE ID = ?""", (minusQtd, id))
         self.con.commit()
 
     def listCategory(self):

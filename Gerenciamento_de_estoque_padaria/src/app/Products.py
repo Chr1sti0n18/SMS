@@ -67,12 +67,12 @@ class Read:
                                         dark_image = Image.open(REFRESH_PATH), size=(25, 25))
         self.refresh_button=ctk.CTkButton(self.inner_frame2, width = self.largura - (self.largura * 0.98), height= 35, text = '',image=self.refresh_icon, fg_color='transparent',
                                             font=ctk.CTkFont(family="Segoe UI", weight="bold"), text_color='#EBEBEB', hover_color= "#FFF", 
-                                            command=self.displayAll)
+                                            command=self.refresh)
         self.refresh_button.place(relx=0.832, rely=0.6)
         
         # Seletor de categoria
         categorias = self.db.listCategory()
-        comboValues = [row[0] for row in categorias]
+        comboValues = [row[0].capitalize() for row in categorias]
         comboValues.insert(0, "Todos") 
         self.combobox = ctk.CTkComboBox(self.inner_frame2, values=comboValues, 
                                         corner_radius=15, width=150, font=CTkFont(family="Segoe UI"), command=self.teste, state = "readonly")
@@ -193,4 +193,10 @@ class Read:
         self.main_window.destroy()
         App_menu()
         
+    def refresh(self):
+        self.combobox.set("Todos")
+        filter = self.combobox.get()
+        self.table.delete(*self.table.get_children())
+        for row in self.db.fetch(filter):
+            self.table.insert("", END, values = row)
         

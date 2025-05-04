@@ -76,6 +76,8 @@ class Create:
         self.val_label.grid(row=5, column=1)
         self.form_val = ctk.CTkEntry(self.inner_frame_form, height = altura_janela*0.083, width = largura_janela*0.3125, corner_radius=15, border_color="#554131")
         self.form_val.grid(row=6, column=1, padx=15, sticky=E)
+        self.form_val.bind("<KeyRelease>", self.formatar_data)
+        self.form_val.bind("<KeyRelease>", self.limitar_caracteres) 
 
         self.lote_label=ctk.CTkLabel(self.inner_frame_form, text="Lote", font=ctk.CTkFont("Segoe UI", 15, "bold"))
         self.lote_label.grid(row=5, column=2)
@@ -96,6 +98,7 @@ class Create:
         Produto=self.form_name.get().upper()
         Quantidade=self.form_qtd.get()
         Preco=self.form_price.get()
+        Preco = Preco.replace(",", ".")
         Validade=self.form_val.get()
         Categoria=self.form_category.get().upper()
         Lote=self.form_lote.get().upper()
@@ -116,3 +119,22 @@ class Create:
                 self.main_window.destroy()
                 messagebox.showinfo("Erro", "Erro ao cadastrar produto: %s"%(e))
                 Create()
+    def formatar_data(self, event):
+
+        texto = self.form_val.get()
+
+        # Remover caracteres que não sejam números
+        texto = "".join(filter(str.isdigit, texto))
+
+        # Aplicar / de forma automática
+        if len(texto) > 2:
+            texto = texto[:2] + "/" + texto[2:]
+        if len(texto) > 5:
+            texto = texto[:5] + "/" + texto[5:]
+
+        self.form_val.delete(0, "end") 
+        self.form_val.insert(0, texto)
+
+    def limitar_caracteres(self, event):
+        if len(self.form_val.get()) > 10:
+            self.form_val.delete(10, "end")
