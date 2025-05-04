@@ -58,6 +58,7 @@ class GetProduto:
             if(int(self.form_qtd.get()) > int(produto[2])):
                     main_window.destroy()
                     return messagebox.showinfo("Erro", "Quantidade maior que a disponível em estoque!") & self.main_window.mainloop()    
+            self.qtdProd = int(produto[2])
             #Dados do produto
             try:
                 if(produto == None):
@@ -109,7 +110,7 @@ class GetProduto:
             
             #Mudando posição do botão
             self.submit_button.pack_forget()
-            self.submit_button.configure(text = "Confirmar", width = 435, command = self.cadastrarVenda)
+            self.submit_button.configure(text = "Confirmar", width = 435, command = self.cadastrarVenda(self.qtdProd))
             self.submit_button.pack(pady = 25)
             self.qtd_label.pack_forget()
             self.form_qtd.pack_forget()
@@ -134,7 +135,7 @@ class GetProduto:
         main_window.mainloop()
         
     #Função para cadastrar venda
-    def cadastrarVenda(self):
+    def cadastrarVenda(self, qtd2):
         id = self.form_id.get()
         qtd = self.form_qtd.get()
         nome = self.form_name.get()
@@ -150,6 +151,8 @@ class GetProduto:
                 messagebox.showinfo("Sucesso!", "Venda cadastrada com sucesso!")
                 if self.callback:
                     self.callback()
+                self.qtdProd = int(qtd2)-int(qtd)
+                self.db.reduceQtd(id,self.qtdProd)
                 GetProduto()
             except Exception as e:
                     main_window.destroy()

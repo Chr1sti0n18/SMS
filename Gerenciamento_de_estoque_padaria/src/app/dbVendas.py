@@ -9,7 +9,6 @@ class Data2:
         DB_PATH = os.path.join(BASE_DIR, '..', 'app', 'dist', 'data', dbVendas)
         self.con = sqlite3.connect(DB_PATH)
         self.cur = self.con.cursor()
-        from src import Vendas
 
         # Criando a tabela se ela não existir
         vendas = """CREATE TABLE IF NOT EXISTS VendasPadaria(
