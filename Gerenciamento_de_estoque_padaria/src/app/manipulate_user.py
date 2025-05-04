@@ -147,7 +147,7 @@ class Manipulate:
         if (self.txt_Nome.get == "" or self.txt_Senha.get() == 0 or  self.txt_Nivel_acesso.get() == ""):
             messagebox.showerror("Erro na entrada", "Por favor preencha todos os campos")
         else:
-            self.db.insert(self.txt_Nome.get(), self.txt_Senha.get(), self.txt_Nivel_acesso.get())
+            self.db.insert(self.txt_Nome.get(), self.txt_Senha.get(), self.txt_Nivel_acesso.get().capitalize())
             messagebox.showinfo("Sucesso", "Usuário cadastrado")
             self.clearAll()
             self.displayAll()

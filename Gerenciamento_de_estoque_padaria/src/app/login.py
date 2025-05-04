@@ -86,7 +86,7 @@ class Login():
                     self.main_window.destroy()
                     tela_menu = App_menu()
                 
-                if funcao == "Padrão":
+                if funcao == "User":
                     self.main_window.destroy()
                     tela_read = Read()
 
