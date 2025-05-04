@@ -71,8 +71,12 @@ class Read:
         self.refresh_button.place(relx=0.832, rely=0.6)
         
         # Seletor de categoria
-        self.combobox = ctk.CTkComboBox(self.inner_frame2, values=["Todos", "Salgados", "Enlatados", "Doces"], 
-                                        corner_radius=15, width=150, font=CTkFont(family="Segoe UI"), command=self.teste)
+        categorias = self.db.listCategory()
+        comboValues = [row[0] for row in categorias]
+        comboValues.insert(0, "Todos") 
+        self.combobox = ctk.CTkComboBox(self.inner_frame2, values=comboValues, 
+                                        corner_radius=15, width=150, font=CTkFont(family="Segoe UI"), command=self.teste, state = "readonly")
+        self.combobox.set(comboValues[0])
         self.combobox.place(relx=0.69, rely=0.6)
         
         
@@ -175,9 +179,9 @@ class Read:
         else:
             messagebox.showinfo("Cancelado", "Exclusão do produto cancelada.")
             
-    def cadastar_produto(self):
-        Create()
-                   
+    def cadastar_produto(self ):
+        Create(self.displayAll)
+                       
     def update_produto(self):
         from src import Update
         selected_item = self.table.selection()[0]   
@@ -188,4 +192,5 @@ class Read:
         from src import App_menu
         self.main_window.destroy()
         App_menu()
+        
         

@@ -92,5 +92,3 @@ class Login():
 
             else:
                 messagebox.showerror("Erro", "Nome de usuário ou senha incorreto!")
-
-Login()

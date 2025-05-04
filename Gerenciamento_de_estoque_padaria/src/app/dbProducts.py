@@ -63,6 +63,14 @@ class Database:
                             WHERE ID = ?""",
                          (Produto, Quantidade, Preco, Validade, Categoria, Lote, ID))
         self.con.commit()
+
+    def listCategory(self):
+        self.cur.execute("SELECT DISTINCT Categoria from ProdutosPadaria")
+        rows = self.cur.fetchall()
+        return rows
+        
     # Fechando a conexão com o banco de dados
     def __del__(self):
         self.con.close()
+    
+    

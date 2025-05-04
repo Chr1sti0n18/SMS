@@ -6,13 +6,14 @@ import os
 
 class Create:
 
-    def __init__(self):
+    def __init__(self, callback = None):
 
+        self.callback = callback
         self.db = Database("products.db")
         self.main_window = Tk()
         self.main_window.title("Cadastro de Produto")
         self.main_window.resizable(False, FALSE)
-       
+
         #Tamanho da janela
         self.screen_width = self.main_window.winfo_screenwidth()
         self.screen_height = self.main_window.winfo_screenheight()
@@ -101,12 +102,14 @@ class Create:
     
         if ID == None or Produto == None or Quantidade == None or Preco == None or Validade == None or Categoria == "CATEGORIA" or Lote == None:
             self.main_window.destroy()
-            messagebox.showinfo("Erro", "Não deixe nenhum campo vazio")
+            messagebox.showinfo("Erro", "Não deixe nenhum campo vazio!")
             Create()
         else:
             try:
                 self.db.insert(ID, Produto, Quantidade, Preco, Validade, Categoria, Lote)
                 self.main_window.destroy()
+                if self.callback:
+                    self.callback()
                 messagebox.showinfo("Sucesso!", "Produto cadastrado com sucesso!")
                 Create()
             except Exception as e:
